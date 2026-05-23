@@ -88,11 +88,46 @@ export function Navbar({ isVisible = true }: NavbarProps) {
                   window.scrollTo({ top: 0, behavior: "smooth" })
                 }}
                 className="group flex items-center gap-2 select-none"
+                aria-label="Home"
               >
-                <span className="font-mono text-xs tracking-[0.25em] text-white/60 group-hover:text-white transition-colors duration-300">
-                  {profile.initials}
-                </span>
-                <span className="w-1 h-1 rounded-full bg-[#00E5FF] group-hover:scale-150 transition-transform duration-300" />
+                <svg
+                  viewBox="320 240 410 640"
+                  width="13"
+                  height="20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="transition-transform duration-300 group-hover:scale-105"
+                >
+                  <path d="M328 252H720L624 348H424V770L328 866V252Z" fill="url(#navWhiteFace)" />
+                  <path d="M624 348L720 252V538L624 634V348Z" fill="url(#navSilverFace)" />
+                  <path d="M424 538H624V634H520L424 538Z" fill="url(#navSilverLower)" />
+                  <path d="M424 348H624V538H424V348Z" fill="#050505" />
+                  <path d="M424 538L520 634L424 730V538Z" fill="url(#navDarkFold)" />
+                  <path d="M328 866L424 770V730L328 826V866Z" fill="url(#navWhiteLeg)" />
+                  
+                  <defs>
+                    <linearGradient id="navWhiteFace" x1="328" y1="252" x2="672" y2="786" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#FFFFFF"/>
+                      <stop offset="1" stopColor="#EDEDED"/>
+                    </linearGradient>
+                    <linearGradient id="navWhiteLeg" x1="328" y1="730" x2="424" y2="866" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#FFFFFF"/>
+                      <stop offset="1" stopColor="#EDEDED"/>
+                    </linearGradient>
+                    <linearGradient id="navSilverFace" x1="624" y1="252" x2="720" y2="634" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#E5E5E5"/>
+                      <stop offset="1" stopColor="#999999"/>
+                    </linearGradient>
+                    <linearGradient id="navSilverLower" x1="424" y1="538" x2="624" y2="634" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#B5B5B5"/>
+                      <stop offset="1" stopColor="#7F7F7F"/>
+                    </linearGradient>
+                    <linearGradient id="navDarkFold" x1="424" y1="538" x2="520" y2="730" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#333333"/>
+                      <stop offset="1" stopColor="#111111"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
               </a>
 
               {/* Desktop Navigation Links */}
@@ -107,7 +142,7 @@ export function Navbar({ isVisible = true }: NavbarProps) {
                           isActive ? "text-white font-medium" : "text-white/45 hover:text-white"
                         }`}
                       >
-                        <span className="text-[#3B82F6] mr-1.5 opacity-90">{item.index}</span>
+                        <span className="text-white/40 mr-1.5 opacity-90">{item.index}</span>
                         {item.label}
                         
                         {/* Dynamic underline */}
@@ -125,8 +160,8 @@ export function Navbar({ isVisible = true }: NavbarProps) {
               {/* Status Indicator */}
               <div className="hidden lg:flex items-center gap-3">
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E5FF] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00E5FF]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white/70" />
                 </span>
                 <span className="font-mono text-[9px] tracking-[0.2em] text-white/45 uppercase select-none">
                   {profile.availability}
@@ -169,10 +204,10 @@ export function Navbar({ isVisible = true }: NavbarProps) {
                     onClick={() => scrollToSection(item.href)}
                     className="group flex flex-col items-center gap-1.5"
                   >
-                    <span className="font-mono text-xs text-[#3B82F6] tracking-[0.25em]">{item.index}</span>
+                    <span className="font-mono text-xs text-white/40 tracking-[0.25em]">{item.index}</span>
                     <span
                       className={`text-2xl font-light tracking-widest uppercase transition-colors ${
-                        isActive ? "text-[#00E5FF]" : "text-white/70 group-hover:text-white"
+                        isActive ? "text-white" : "text-white/50 group-hover:text-white"
                       }`}
                     >
                       {item.label}
@@ -188,8 +223,8 @@ export function Navbar({ isVisible = true }: NavbarProps) {
                 className="flex items-center gap-2.5 mt-8 border border-white/[0.06] px-4 py-2 rounded-full bg-white/[0.02]"
               >
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E5FF] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00E5FF]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white/70" />
                 </span>
                 <span className="font-mono text-[9px] tracking-[0.18em] text-white/50 uppercase">
                   {profile.availability}

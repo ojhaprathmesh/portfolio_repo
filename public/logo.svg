@@ -3,8 +3,8 @@
 
   <g filter="url(#softGlow)">
     <path d="M328 252H720L624 348H424V770L328 866V252Z" fill="url(#whiteFace)"/>
-    <path d="M624 348L720 252V538L624 634V348Z" fill="url(#cyanFace)"/>
-    <path d="M424 538H624V634H520L424 538Z" fill="url(#cyanLower)"/>
+    <path d="M624 348L720 252V538L624 634V348Z" fill="url(#silverFace)"/>
+    <path d="M424 538H624V634H520L424 538Z" fill="url(#silverLower)"/>
     <path d="M424 348H624V538H424V348Z" fill="#050505"/>
     <path d="M424 538L520 634L424 730V538Z" fill="url(#shadowFold)"/>
     <path d="M328 866L424 770V730L328 826V866Z" fill="url(#whiteLeg)"/>
@@ -21,23 +21,23 @@
       <stop offset="1" stop-color="#EDEDED"/>
     </linearGradient>
 
-    <linearGradient id="cyanFace" x1="624" y1="252" x2="720" y2="634" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#00E5FF"/>
-      <stop offset="1" stop-color="#10C7D9"/>
+    <linearGradient id="silverFace" x1="624" y1="252" x2="720" y2="634" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E5E5E5"/>
+      <stop offset="1" stop-color="#999999"/>
     </linearGradient>
 
-    <linearGradient id="cyanLower" x1="424" y1="538" x2="624" y2="634" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#00E5FF"/>
-      <stop offset="1" stop-color="#15D8E8"/>
+    <linearGradient id="silverLower" x1="424" y1="538" x2="624" y2="634" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B5B5B5"/>
+      <stop offset="1" stop-color="#7F7F7F"/>
     </linearGradient>
 
     <linearGradient id="shadowFold" x1="424" y1="538" x2="520" y2="730" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#009DB0"/>
-      <stop offset="1" stop-color="#05323A"/>
+      <stop stop-color="#333333"/>
+      <stop offset="1" stop-color="#111111"/>
     </linearGradient>
 
     <filter id="softGlow" x="280" y="204" width="488" height="710" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#00E5FF" flood-opacity="0.14"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#FFFFFF" flood-opacity="0.08"/>
     </filter>
   </defs>
 </svg>

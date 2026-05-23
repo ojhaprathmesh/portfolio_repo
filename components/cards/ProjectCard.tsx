@@ -44,9 +44,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
             style={{
               backgroundColor:
                 project.status === "shipped"
-                  ? "#00E5FF"
+                  ? "#FFFFFF"
                   : project.status === "in-progress"
-                  ? "#FF3B3B"
+                  ? "#A7A7A7"
                   : "#5F5F5F",
             }}
           />
@@ -65,9 +65,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-light text-white mb-3 group-hover:text-[#00E5FF] transition-colors duration-300 flex items-center justify-between">
+        <h3 className="text-xl font-light text-white mb-3 transition-colors duration-300 flex items-center justify-between">
           <span>{project.title}</span>
-          <ArrowUpRight size={16} className="text-white/20 group-hover:text-[#00E5FF] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+          <ArrowUpRight size={16} className="text-white/20 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
         </h3>
 
         {/* Description */}

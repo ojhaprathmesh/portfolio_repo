@@ -19,15 +19,14 @@ export function CodingCard({ profile }: CodingCardProps) {
     >
       {/* Decorative platform color glow overlay */}
       <div
-        className="absolute -right-16 -top-16 w-32 h-32 rounded-full blur-[80px] opacity-10 group-hover:opacity-20 transition-opacity duration-500"
-        style={{ backgroundColor: profile.color || "#3B82F6" }}
+        className="absolute -right-16 -top-16 w-32 h-32 rounded-full bg-white blur-[80px] opacity-5 group-hover:opacity-12 transition-opacity duration-500"
       />
 
       <div>
         {/* Header */}
         <div className="flex items-center justify-between mb-4 select-none">
           <div className="flex items-center gap-2">
-            <Terminal size={14} className="text-[#3B82F6]" />
+            <Terminal size={14} className="text-white/60" />
             <h3 className="text-base font-light text-white uppercase tracking-wider">
               {profile.platform}
             </h3>
@@ -58,12 +57,7 @@ export function CodingCard({ profile }: CodingCardProps) {
 
         {profile.badge && (
           <span
-            className="font-mono text-[8px] tracking-widest uppercase border px-2 py-0.5 rounded-sm"
-            style={{
-              borderColor: `${profile.color || "#3B82F6"}25`,
-              color: profile.color || "#3B82F6",
-              backgroundColor: `${profile.color || "#3B82F6"}08`,
-            }}
+            className="font-mono text-[8px] tracking-widest uppercase border border-white/10 text-white/60 bg-white/[0.02] px-2 py-0.5 rounded-sm"
           >
             {profile.badge}
           </span>

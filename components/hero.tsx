@@ -83,10 +83,7 @@ export function Hero() {
     }
   }, [mounted])
 
-  // 1. Static highlight color
-  const THEME_COLOR = "#00E5FF"
-
-
+  const THEME_COLOR = "#FFFFFF"
 
   // Parallax scroll transforms for overlay text
   const { scrollYProgress } = useScroll({
@@ -141,8 +138,6 @@ export function Hero() {
       />
 
       {/* ── Main text content ── */}
-      {/* Note: container has pointer-events-none so mouse events pass through to 3D canvas,
-          but interactive child elements enable pointer-events-auto */}
       <motion.div
         style={{ opacity, scale, y }}
         className="relative z-10 h-full flex flex-col justify-center items-center px-6 md:px-12 pointer-events-none"
@@ -165,11 +160,11 @@ export function Hero() {
             <span className="relative flex items-center gap-1.5">
               <span className="relative flex h-1.5 w-1.5">
                 <span
-                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-40"
                   style={{ background: THEME_COLOR }}
                 />
                 <span
-                  className="relative inline-flex rounded-full h-1.5 w-1.5"
+                  className="relative inline-flex rounded-full h-1.5 w-1.5 opacity-70"
                   style={{ background: THEME_COLOR }}
                 />
               </span>

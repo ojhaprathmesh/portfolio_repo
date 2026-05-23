@@ -27,8 +27,8 @@ export default function Resume() {
           <div className="md:col-span-7 flex flex-col justify-between p-6 md:p-8 bg-[#0d0d0d] border border-white/[0.04] rounded-sm">
             <div>
               <div className="flex items-center gap-2 mb-6 select-none">
-                <GraduationCap size={16} className="text-[#3B82F6]" />
-                <span className="font-mono text-[10px] tracking-[0.25em] text-[#3B82F6] uppercase font-medium">
+                <GraduationCap size={16} className="text-white/60" />
+                <span className="font-mono text-[10px] tracking-[0.25em] text-white/60 uppercase font-medium">
                   Education Profile
                 </span>
               </div>
@@ -36,7 +36,7 @@ export default function Resume() {
               <h3 className="text-xl font-light text-white mb-2 leading-snug">
                 {edu.degree}
               </h3>
-              <p className="font-mono text-sm text-[#00E5FF] mb-4">
+              <p className="font-mono text-sm text-white/90 mb-4">
                 {edu.institution}
               </p>
 

@@ -24,11 +24,11 @@ export default function Skills() {
           <div className="flex flex-wrap items-center gap-6 mb-12 border border-white/[0.04] p-4 bg-[#0d0d0d]/40 rounded-sm w-fit font-mono text-[9px] tracking-widest uppercase">
             <span className="text-white/40 select-none">Legend //</span>
             <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FFFFFF]" />
               <span className="text-white/60">Confident / Primary</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A7A7A7]" />
               <span className="text-white/60">Proficient / Secondary</span>
             </div>
             <div className="flex items-center gap-1.5">

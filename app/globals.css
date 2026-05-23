@@ -17,36 +17,36 @@
   --secondary-foreground: #F5F5F5;
   --muted: #1A1A1A;
   --muted-foreground: #A7A7A7;
-  --accent: #00E5FF;
+  --accent: #FFFFFF;
   --accent-foreground: #050505;
-  --destructive: #FF3B3B;
+  --destructive: #5F5F5F;
   --destructive-foreground: #F5F5F5;
   --border: #333333;
   --input: #1A1A1A;
-  --ring: #3B82F6;
+  --ring: #A7A7A7;
   --radius: 0.25rem;
-  --chart-1: #00E5FF;
-  --chart-2: #3B82F6;
-  --chart-3: #FF3B3B;
+  --chart-1: #FFFFFF;
+  --chart-2: #A7A7A7;
+  --chart-3: #5F5F5F;
   --chart-4: #A7A7A7;
   --chart-5: #1A1A1A;
   --sidebar: #0B0B0B;
   --sidebar-foreground: #F5F5F5;
-  --sidebar-primary: #00E5FF;
+  --sidebar-primary: #FFFFFF;
   --sidebar-primary-foreground: #050505;
   --sidebar-accent: #1A1A1A;
   --sidebar-accent-foreground: #F5F5F5;
   --sidebar-border: #333333;
-  --sidebar-ring: #3B82F6;
+  --sidebar-ring: #A7A7A7;
 
   /* Approved custom scheme variables */
   --elevated: #111111;
   --dim: #5F5F5F;
   --grid-line: #242424;
   --glow: #EDEDED;
-  --cyan-glitch: #00E5FF;
-  --blue-glitch: #3B82F6;
-  --red-glitch: #FF3B3B;
+  --cyan-glitch: #FFFFFF;
+  --blue-glitch: #A7A7A7;
+  --red-glitch: #5F5F5F;
 }
 
 @theme inline {
@@ -141,8 +141,8 @@
 
 /* Selection styles */
 ::selection {
-  background: #3b82f6;
-  color: #050505;
+  background: rgba(255, 255, 255, 0.95);
+  color: #000000;
 }
 
 /* Marquee animation */
@@ -181,6 +181,6 @@ html {
 
 /* Focus visible styles */
 :focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #FFFFFF;
   outline-offset: 2px;
 }

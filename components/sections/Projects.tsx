@@ -171,7 +171,7 @@ export default function Projects() {
                     {isActive && (
                       <motion.span
                         layoutId="activeCategoryIndicator"
-                        className="absolute bottom-0 left-0 right-0 h-px bg-[#00E5FF]"
+                        className="absolute bottom-0 left-0 right-0 h-px bg-white"
                         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                       />
                     )}

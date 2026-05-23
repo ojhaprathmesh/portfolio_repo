@@ -121,7 +121,7 @@ export function Works() {
             />
           )}
           {/* Accent overlay */}
-          <div className="absolute inset-0 bg-[#3b82f6]/10 mix-blend-overlay" />
+          <div className="absolute inset-0 bg-white/5 mix-blend-overlay" />
         </motion.div>
       </div>
 

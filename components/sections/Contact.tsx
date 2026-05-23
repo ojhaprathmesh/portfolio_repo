@@ -36,15 +36,15 @@ export default function Contact() {
             </h3>
             
             <div>
-              <span className="block font-mono text-[9px] tracking-[0.25em] text-[#3B82F6] uppercase mb-2 select-none">
+              <span className="block font-mono text-[9px] tracking-[0.25em] text-white/40 uppercase mb-2 select-none">
                 Direct Email
               </span>
               <a
                 href={`mailto:${profile.email}`}
-                className="group inline-flex items-center gap-3 text-xl md:text-2xl font-mono text-white/70 hover:text-[#00E5FF] transition-colors duration-300"
+                className="group inline-flex items-center gap-3 text-xl md:text-2xl font-mono text-white/70 hover:text-white transition-colors duration-300"
               >
                 <span>{profile.email}</span>
-                <ArrowUpRight size={20} className="text-white/20 group-hover:text-[#00E5FF] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                <ArrowUpRight size={20} className="text-white/20 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
               </a>
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function Contact() {
                       rel="noopener noreferrer"
                       className="group flex items-center gap-2.5 font-mono text-[11px] tracking-wider text-white/50 hover:text-white transition-colors"
                     >
-                      <Icon size={14} className="text-white/30 group-hover:text-[#00E5FF] transition-colors" />
+                      <Icon size={14} className="text-white/30 group-hover:text-white transition-colors" />
                       <span>{link.label}</span>
                     </a>
                   )

@@ -9,8 +9,8 @@ export function About() {
   return (
     <section id="about" className="py-24 md:py-36 bg-[#050505] relative overflow-hidden">
       {/* Visual glowing accent in the background */}
-      <div className="absolute right-[10%] top-[20%] w-72 h-72 rounded-full bg-[#3B82F6]/5 blur-[120px] pointer-events-none select-none" />
-      <div className="absolute left-[5%] bottom-[10%] w-60 h-60 rounded-full bg-[#00E5FF]/3 blur-[100px] pointer-events-none select-none" />
+      <div className="absolute right-[10%] top-[20%] w-72 h-72 rounded-full bg-white/[0.02] blur-[120px] pointer-events-none select-none" />
+      <div className="absolute left-[5%] bottom-[10%] w-60 h-60 rounded-full bg-white/[0.015] blur-[100px] pointer-events-none select-none" />
 
       <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10">
         <AnimatedSection direction="horizontal" once={false}>

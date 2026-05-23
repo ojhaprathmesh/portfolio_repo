@@ -13,7 +13,7 @@ export function SkillGroup({ group }: SkillGroupProps) {
     <div className="bg-[#0d0d0d] border border-white/[0.04] p-6 rounded-sm flex flex-col h-full hover:border-white/[0.08] transition-colors duration-300">
       {/* Category header */}
       <div className="mb-5 select-none">
-        <span className="font-mono text-[9px] tracking-[0.25em] text-[#3B82F6] uppercase block mb-1">
+        <span className="font-mono text-[9px] tracking-[0.25em] text-white/40 uppercase block mb-1">
           {group.category}
         </span>
         <h3 className="text-lg font-light text-white uppercase tracking-wider">
@@ -34,9 +34,9 @@ export function SkillGroup({ group }: SkillGroupProps) {
               style={{
                 backgroundColor:
                   skill.level === "confident"
-                    ? "#00E5FF"
+                    ? "#FFFFFF"
                     : skill.level === "proficient"
-                    ? "#3B82F6"
+                    ? "#A7A7A7"
                     : "transparent",
                 border: skill.level === "learning" ? "1px dashed rgba(255,255,255,0.4)" : "none",
               }}

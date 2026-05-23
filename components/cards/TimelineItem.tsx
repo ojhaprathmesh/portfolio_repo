@@ -15,7 +15,7 @@ export function TimelineItem({ item, index }: TimelineItemProps) {
     <div className="relative pl-8 md:pl-12 pb-12 last:pb-0 border-l border-white/[0.06]">
       {/* Glow node anchor */}
       <div className="absolute left-0 top-1.5 -translate-x-[4.5px] w-2.5 h-2.5 rounded-full bg-[#0d0d0d] border border-white/20 flex items-center justify-center">
-        <span className="w-1 h-1 rounded-full bg-[#3B82F6]" />
+        <span className="w-1 h-1 rounded-full bg-white" />
       </div>
 
       {/* Item info header */}
@@ -29,7 +29,7 @@ export function TimelineItem({ item, index }: TimelineItemProps) {
                 href={item.companyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#00E5FF] hover:underline flex items-center gap-1 font-mono text-sm tracking-wider"
+                className="text-white/80 hover:text-white hover:underline flex items-center gap-1 font-mono text-sm tracking-wider"
               >
                 <span>{item.company}</span>
                 <ExternalLink size={11} strokeWidth={1.5} />
@@ -46,7 +46,7 @@ export function TimelineItem({ item, index }: TimelineItemProps) {
         </div>
 
         {/* Date period */}
-        <div className="font-mono text-[10px] tracking-[0.25em] text-[#3B82F6] font-medium md:text-right uppercase">
+        <div className="font-mono text-[10px] tracking-[0.25em] text-white/50 font-medium md:text-right uppercase">
           {item.period}
         </div>
       </div>
@@ -55,7 +55,7 @@ export function TimelineItem({ item, index }: TimelineItemProps) {
       <ul className="space-y-2 mb-5 list-none">
         {item.description.map((bullet, i) => (
           <li key={i} className="flex gap-2.5 text-xs text-white/60 leading-relaxed font-sans">
-            <span className="text-[#3B82F6] select-none mt-1 font-mono text-[9px]">•</span>
+            <span className="text-white/30 select-none mt-1 font-mono text-[9px]">•</span>
             <span>{bullet}</span>
           </li>
         ))}
@@ -75,7 +75,7 @@ export function TimelineItem({ item, index }: TimelineItemProps) {
         </div>
 
         {item.highlight && (
-          <span className="font-mono text-[9px] tracking-[0.15em] text-[#00E5FF] bg-[#00E5FF]/[0.04] border border-[#00E5FF]/10 px-2.5 py-0.5 rounded-sm uppercase">
+          <span className="font-mono text-[9px] tracking-[0.15em] text-white bg-white/[0.03] border border-white/10 px-2.5 py-0.5 rounded-sm uppercase">
             {item.highlight}
           </span>
         )}

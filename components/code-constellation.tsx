@@ -235,7 +235,7 @@ function ConstellationCore() {
       {/* Connection lines */}
       <lineSegments geometry={connectionGeo}>
         <lineBasicMaterial
-          color="#3b82f6"
+          color="#ffffff"
           transparent
           opacity={0.10}
         />
