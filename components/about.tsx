@@ -13,7 +13,7 @@ export function About() {
       <div className="absolute left-[5%] bottom-[10%] w-60 h-60 rounded-full bg-[#00E5FF]/3 blur-[100px] pointer-events-none select-none" />
 
       <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10">
-        <AnimatedSection>
+        <AnimatedSection direction="horizontal" once={false}>
           <SectionHeading
             number="01"
             title="About Me"
@@ -23,19 +23,19 @@ export function About() {
 
         {/* Minimalist Centered Biography Layout */}
         <div className="space-y-6 md:space-y-8 mt-12 md:mt-16 max-w-3xl">
-          <AnimatedSection delay={0.1}>
+          <AnimatedSection direction="horizontal" once={false} delay={0.1}>
             <h3 className="text-xl md:text-2xl font-light text-white leading-relaxed">
               {profile.tagline}
             </h3>
           </AnimatedSection>
 
-          <AnimatedSection delay={0.15}>
+          <AnimatedSection direction="horizontal" once={false} delay={0.15}>
             <p className="text-white/60 text-sm md:text-base leading-relaxed font-sans max-w-2xl">
               {profile.shortBio}
             </p>
           </AnimatedSection>
 
-          <AnimatedSection delay={0.2}>
+          <AnimatedSection direction="horizontal" once={false} delay={0.2}>
             <div className="space-y-4 border-l border-white/[0.06] pl-6 py-1">
               {profile.bio.map((paragraph, idx) => (
                 <p key={idx} className="text-white/50 text-xs md:text-sm font-sans leading-relaxed max-w-xl">

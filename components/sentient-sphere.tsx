@@ -14,6 +14,11 @@ export function Sphere({ isMobile }: SphereProps) {
   const meshRef = useRef<Mesh>(null)
   const materialRef = useRef<ShaderMaterial>(null)
   const { pointer } = useThree()
+  
+  // Throttle Render logic: Capped at 90 FPS to preserve CPU/GPU cycles
+  const lastRenderTime = useRef(0)
+  const fps = 90
+  const interval = 1 / fps
 
   const uniforms = useMemo(
     () => ({
@@ -106,8 +111,26 @@ export function Sphere({ isMobile }: SphereProps) {
     }
   `
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     const time = state.clock.getElapsedTime()
+    
+    let shouldSkip = false
+    let elapsed = 0
+    if (lastRenderTime.current !== 0) {
+      elapsed = time - lastRenderTime.current
+      // Only skip if elapsed is positive, under 1.0s (to catch frame resumptions), and under the FPS interval
+      if (elapsed >= 0 && elapsed < 1.0 && elapsed < interval) {
+        shouldSkip = true
+      }
+    }
+
+    if (shouldSkip) {
+      return
+    }
+
+    // Set elapsedSinceLastRender to either the calculated elapsed time or the default frame interval
+    const elapsedSinceLastRender = lastRenderTime.current === 0 || elapsed < 0 || elapsed > 1.0 ? interval : elapsed
+
     if (materialRef.current) {
       materialRef.current.uniforms.uTime.value = time
       materialRef.current.uniforms.uMouse.value = [pointer.x, pointer.y]
@@ -115,11 +138,15 @@ export function Sphere({ isMobile }: SphereProps) {
 
     if (meshRef.current) {
       meshRef.current.rotation.y = time * 0.05
-      const lerpSpeed = 1 - Math.exp(-5 * delta) // frame-rate independent
+      const lerpSpeed = 1 - Math.exp(-5 * elapsedSinceLastRender) // Frame-rate independent based on actual elapsed time
       meshRef.current.rotation.x = MathUtils.lerp(meshRef.current.rotation.x, pointer.y * 0.2, lerpSpeed)
       meshRef.current.rotation.z = MathUtils.lerp(meshRef.current.rotation.z, pointer.x * 0.2, lerpSpeed)
     }
-  })
+
+    // Explicit render call due to custom frame control (renderPriority = 1)
+    state.gl.render(state.scene, state.camera)
+    lastRenderTime.current = time
+  }, 1)
 
   return (
     <mesh ref={meshRef}>
@@ -193,4 +220,3 @@ export function SentientSphere() {
     </div>
   )
 }
-

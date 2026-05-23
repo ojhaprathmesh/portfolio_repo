@@ -90,7 +90,7 @@ export function Hero() {
 
   // Parallax scroll transforms for overlay text
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: mounted ? containerRef : undefined,
     offset: ["start start", "end start"],
   })
   const opacity = useTransform(scrollYProgress, [0, 0.55], [1, 0])
@@ -354,7 +354,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
-        className="absolute top-8 left-8 z-10 font-mono text-[9px] tracking-[0.3em] uppercase hidden md:block select-none"
+        className="absolute bottom-8 left-8 z-10 font-mono text-[9px] tracking-[0.3em] uppercase hidden md:block select-none"
         style={{ color: "#333333" }}
         aria-hidden="true"
       >
@@ -365,7 +365,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
-        className="absolute top-8 right-8 z-10 font-mono text-[9px] tracking-[0.3em] uppercase hidden md:block select-none"
+        className="absolute bottom-8 right-8 z-10 font-mono text-[9px] tracking-[0.3em] uppercase hidden md:block select-none"
         style={{ color: "#333333" }}
         aria-hidden="true"
       >
