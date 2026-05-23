@@ -1,9 +1,10 @@
 "use client"
 
-import { useRef, useMemo, useEffect, useState } from "react"
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
-import { MathUtils, FrontSide } from "three"
+import { useEffect, useMemo, useRef, useState } from "react"
 import type { Mesh, ShaderMaterial } from "three"
+import { FrontSide,MathUtils } from "three"
+
 import { useIsMobile } from "@/hooks/use-mobile"
 
 interface SphereProps {

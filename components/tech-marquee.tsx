@@ -1,7 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { techMarqueeItems, conceptMarqueeItems } from "@/data"
+
+import { conceptMarqueeItems,techMarqueeItems } from "@/data"
 
 function MarqueeRow({
   items,

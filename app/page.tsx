@@ -1,21 +1,22 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
+import { useEffect,useState } from "react"
+
+import { CustomCursor } from "@/components/custom-cursor"
+import { Footer } from "@/components/footer"
 import { HeroAboutScroll } from "@/components/hero-about-scroll"
-import Experience from "@/components/sections/Experience"
-import Projects from "@/components/sections/Projects"
-import Skills from "@/components/sections/Skills"
+import { LoadingScreen } from "@/components/loading-screen"
+import { Navbar } from "@/components/navbar"
 import Achievements from "@/components/sections/Achievements"
 import CodingProfiles from "@/components/sections/CodingProfiles"
-import Resume from "@/components/sections/Resume"
 import Contact from "@/components/sections/Contact"
-import { TechMarquee } from "@/components/tech-marquee"
-import { Footer } from "@/components/footer"
-import { CustomCursor } from "@/components/custom-cursor"
+import Experience from "@/components/sections/Experience"
+import Projects from "@/components/sections/Projects"
+import Resume from "@/components/sections/Resume"
+import Skills from "@/components/sections/Skills"
 import { SmoothScroll } from "@/components/smooth-scroll"
-import { LoadingScreen } from "@/components/loading-screen"
+import { TechMarquee } from "@/components/tech-marquee"
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)

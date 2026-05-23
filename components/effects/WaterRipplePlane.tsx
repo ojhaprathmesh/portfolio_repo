@@ -1,9 +1,10 @@
 // filepath: src/components/effects/WaterRipplePlane.tsx
 "use client";
 
-import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import { useMemo, useRef } from "react";
 import * as THREE from "three";
+
 import {
   waterRippleFragmentShader,
   waterRippleVertexShader,

@@ -1,10 +1,11 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
 import { motion, useMotionValue } from "framer-motion"
 import { useLenis } from "lenis/react"
-import { Hero } from "./hero"
+import { useEffect, useRef, useState } from "react"
+
 import { About } from "./about"
+import { Hero } from "./hero"
 
 // Helper to calculate the true layout offset top of an element relative to the document root
 // This is unaffected by sticky positions, scroll states, or parent transforms.

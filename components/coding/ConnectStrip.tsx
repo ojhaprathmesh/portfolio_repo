@@ -1,6 +1,7 @@
 "use client"
 
-import { Github, Linkedin, ExternalLink } from "lucide-react"
+import { ExternalLink,Github, Linkedin } from "lucide-react"
+
 import { LeetCodeBrandIcon } from "@/components/icons/LeetCodeBrandIcon"
 import { codingConfig } from "@/data/coding"
 import { socialLinks } from "@/data/socials"

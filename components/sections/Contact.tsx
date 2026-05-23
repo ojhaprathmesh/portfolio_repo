@@ -1,11 +1,12 @@
 // filepath: components/sections/Contact.tsx
 "use client"
 
+import type { LucideIcon } from "lucide-react"
+import { ArrowUpRight, Clock,Github, Globe, Linkedin, Mail, Twitter } from "lucide-react"
+
 import { AnimatedSection } from "@/components/common/AnimatedSection"
 import { SectionHeading } from "@/components/common/SectionHeading"
-import { profile, contactLinks } from "@/data"
-import { Github, Linkedin, Twitter, Mail, ArrowUpRight, Globe, Clock } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
+import { contactLinks,profile } from "@/data"
 
 const ICON_MAP: Record<string, LucideIcon> = {
   github: Github,

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
+
 import { LeetCodeBrandIcon } from "@/components/icons/LeetCodeBrandIcon"
 import { useCountUp } from "@/hooks/use-count-up"
 import type { LeetCodeLiveStats } from "@/lib/coding/types"

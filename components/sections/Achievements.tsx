@@ -1,9 +1,9 @@
 // filepath: components/sections/Achievements.tsx
 "use client"
 
+import { AchievementItem } from "@/components/cards/AchievementItem"
 import { AnimatedSection } from "@/components/common/AnimatedSection"
 import { SectionHeading } from "@/components/common/SectionHeading"
-import { AchievementItem } from "@/components/cards/AchievementItem"
 import { achievements } from "@/data"
 
 export default function Achievements() {

@@ -1,19 +1,21 @@
-import type React from "react"
-import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { siteMetadata } from "@/data"
-import "./globals.css"
+import "./globals.css";
+
+import { Analytics } from "@vercel/analytics/next";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import type React from "react";
+
+import { siteMetadata } from "@/data";
 
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
-})
+});
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
-})
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Prathmesh Ojha" }],
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/logo.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/favicon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     title: siteMetadata.title,
@@ -59,26 +61,29 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-}
+};
 
 export const viewport: Viewport = {
   themeColor: "#050505",
   width: "device-width",
   initialScale: 1,
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} bg-background`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} bg-background`}
+    >
       <body className="font-sans antialiased overflow-x-hidden">
         <div className="noise-overlay" />
         {children}
         <Analytics />
       </body>
     </html>
-  )
+  );
 }

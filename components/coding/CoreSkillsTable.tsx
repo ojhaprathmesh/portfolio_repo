@@ -1,6 +1,7 @@
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
+
 import { coreSkillsRows, engineeringFocus } from "@/data/coding-showcase"
 
 export function CoreSkillsTable() {

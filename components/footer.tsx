@@ -1,7 +1,8 @@
 // filepath: components/footer.tsx
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect,useState } from "react"
+
 import { profile, socialLinks } from "@/data"
 
 export function Footer() {

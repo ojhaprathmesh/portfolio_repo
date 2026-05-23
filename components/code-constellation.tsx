@@ -1,9 +1,9 @@
 // filepath: components/code-constellation.tsx
 "use client"
 
-import { useRef, useMemo, useEffect, useState } from "react"
+import { PointMaterial,Points } from "@react-three/drei"
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
-import { Points, PointMaterial } from "@react-three/drei"
+import { useEffect, useMemo, useRef, useState } from "react"
 import * as THREE from "three"
 
 // ─── Constants ────────────────────────────────────────────────────────────────

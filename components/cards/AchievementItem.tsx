@@ -2,7 +2,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Trophy, Award, Target, Star, ExternalLink } from "lucide-react"
+import { Award, ExternalLink,Star, Target, Trophy } from "lucide-react"
+
 import type { Achievement } from "@/types"
 
 interface AchievementItemProps {

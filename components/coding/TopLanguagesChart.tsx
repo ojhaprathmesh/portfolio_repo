@@ -1,6 +1,7 @@
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
+
 import type { LanguageStat } from "@/lib/coding/types"
 
 interface TopLanguagesChartProps {

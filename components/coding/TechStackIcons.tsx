@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
+
 import { techStackIcons } from "@/data/coding-showcase";
 
 export function TechStackIcons() {

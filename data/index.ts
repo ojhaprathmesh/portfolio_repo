@@ -2,25 +2,25 @@
 // ─── Data Layer — Central Export ─────────────────────────────────────────────
 
 // Profile & Identity
-export { profile, personalInfo } from "./profile"
+export { personalInfo,profile } from "./profile"
 
 // Navigation
 export { navItems, navLinks } from "./navigation"
 
 // Social Links
-export { socialLinks, heroSocialLinks, contactLinks } from "./socials"
+export { contactLinks,heroSocialLinks, socialLinks } from "./socials"
 
 // Site Metadata
 export { siteMetadata } from "./site"
 
 // Projects
-export { projects, featuredProjects } from "./projects"
+export { featuredProjects,projects } from "./projects"
 
 // Experience
 export { experience } from "./experience"
 
 // Skills
-export { skillGroups, skills, techMarqueeItems, conceptMarqueeItems } from "./skills"
+export { conceptMarqueeItems,skillGroups, skills, techMarqueeItems } from "./skills"
 
 // Achievements
 export { achievements } from "./achievements"

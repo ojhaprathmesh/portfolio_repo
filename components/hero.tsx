@@ -1,15 +1,16 @@
 // filepath: components/hero.tsx
 "use client"
 
-import { useRef, useEffect, useState } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { Github, Linkedin, Twitter, ArrowDown, Download, ArrowRight } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
-import { Canvas } from "@react-three/fiber"
 import { Text } from "@react-three/drei"
-import { useIsMobile } from "@/hooks/use-mobile"
-import { profile, heroSocialLinks } from "@/data"
+import { Canvas } from "@react-three/fiber"
+import { motion, useScroll, useTransform } from "framer-motion"
+import type { LucideIcon } from "lucide-react"
+import { ArrowDown, ArrowRight,Download, Github, Linkedin, Twitter } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+
 import { Sphere } from "@/components/sentient-sphere"
+import { heroSocialLinks,profile } from "@/data"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const EASE = [0.25, 0.46, 0.45, 0.94] as const

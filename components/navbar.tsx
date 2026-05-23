@@ -1,10 +1,11 @@
 // filepath: components/navbar.tsx
 "use client"
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { navItems, profile } from "@/data"
+import { AnimatePresence,motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import { useEffect,useState } from "react"
+
+import { navItems, profile } from "@/data"
 
 interface NavbarProps {
   isVisible?: boolean

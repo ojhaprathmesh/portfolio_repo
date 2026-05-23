@@ -1,8 +1,9 @@
 "use client"
 
-import { useMemo } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import { ExternalLink, Github } from "lucide-react"
+import { useMemo } from "react"
+
 import { EmbeddedContributionHeatmap } from "@/components/coding/github-panel/EmbeddedContributionHeatmap"
 import { useCountUp } from "@/hooks/use-count-up"
 import type { GitHubLiveStats } from "@/lib/coding/types"

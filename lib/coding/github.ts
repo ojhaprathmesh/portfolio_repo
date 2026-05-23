@@ -1,8 +1,8 @@
 import {
   buildContributionGrid,
   computeStreaks,
-  flattenContributionWeeks,
   type ContributionDay,
+  flattenContributionWeeks,
 } from "./contributions"
 import { CODING_USERNAME, type GitHubLiveStats, type LanguageStat } from "./types"
 

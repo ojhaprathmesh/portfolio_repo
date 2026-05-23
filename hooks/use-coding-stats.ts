@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+
 import type { CodingStatsResponse } from "@/lib/coding/types"
 
 interface UseCodingStatsResult {

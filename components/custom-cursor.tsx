@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { motion, useMotionValue, useSpring } from "framer-motion"
+import { useEffect, useState } from "react"
 
 export function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false)

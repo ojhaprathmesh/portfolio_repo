@@ -2,9 +2,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github, ExternalLink, ArrowUpRight } from "lucide-react"
-import type { Project } from "@/types"
+import { ArrowUpRight,ExternalLink, Github } from "lucide-react"
 import Image from "next/image"
+
+import type { Project } from "@/types"
 
 interface ProjectCardProps {
   project: Project

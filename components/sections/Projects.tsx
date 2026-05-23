@@ -1,14 +1,15 @@
 // filepath: components/sections/Projects.tsx
 "use client"
 
-import { useRef, useEffect, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+
+import { ProjectCard } from "@/components/cards/ProjectCard"
 import { AnimatedSection } from "@/components/common/AnimatedSection"
 import { SectionHeading } from "@/components/common/SectionHeading"
-import { ProjectCard } from "@/components/cards/ProjectCard"
 import { projects } from "@/data"
-import type { ProjectCategory, Project } from "@/types"
 import { useIsMobile } from "@/hooks/use-mobile"
+import type { Project,ProjectCategory } from "@/types"
 
 // Categories mapped directly to their focus points in the 3D scroll sequence
 const CATEGORIES: { label: string; value: ProjectCategory | "all"; progress: number }[] = [

@@ -1,7 +1,5 @@
 "use client";
 
-import { AnimatedSection } from "@/components/common/AnimatedSection";
-import { SectionHeading } from "@/components/common/SectionHeading";
 import { ConnectStrip } from "@/components/coding/ConnectStrip";
 import { CoreSkillsTable } from "@/components/coding/CoreSkillsTable";
 import { DeveloperProfileBlock } from "@/components/coding/DeveloperProfileBlock";
@@ -11,6 +9,8 @@ import { LeetCodePanel } from "@/components/coding/LeetCodePanel";
 import { LeetCodePanelSkeleton } from "@/components/coding/LeetCodePanelSkeleton";
 import { TechStackIcons } from "@/components/coding/TechStackIcons";
 import { TopLanguagesChart } from "@/components/coding/TopLanguagesChart";
+import { AnimatedSection } from "@/components/common/AnimatedSection";
+import { SectionHeading } from "@/components/common/SectionHeading";
 import { useCodingStats } from "@/hooks/use-coding-stats";
 
 export default function CodingProfiles() {

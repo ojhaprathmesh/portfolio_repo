@@ -1,9 +1,9 @@
 // filepath: components/sections/Experience.tsx
 "use client"
 
+import { TimelineItem } from "@/components/cards/TimelineItem"
 import { AnimatedSection } from "@/components/common/AnimatedSection"
 import { SectionHeading } from "@/components/common/SectionHeading"
-import { TimelineItem } from "@/components/cards/TimelineItem"
 import { experience } from "@/data"
 
 export default function Experience() {

@@ -1,12 +1,13 @@
 "use client"
 
 import { useMemo, useState } from "react"
+
 import type { ContributionDay } from "@/lib/coding/contributions"
 import {
   buildContributionGrid,
   getHeatmapDateRange,
-  levelToOpacity,
   HEATMAP_SIZE,
+  levelToOpacity,
 } from "@/lib/coding/contributions"
 
 interface EmbeddedContributionHeatmapProps {

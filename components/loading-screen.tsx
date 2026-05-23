@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 import { Canvas } from "@react-three/fiber"
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
+import { useEffect, useRef,useState } from "react"
+
 import { WaterRipplePlane } from "./effects/WaterRipplePlane"
 
 interface LoadingScreenProps {

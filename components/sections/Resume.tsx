@@ -1,10 +1,11 @@
 // filepath: components/sections/Resume.tsx
 "use client"
 
+import { Calendar, Compass,Download, FileText, GraduationCap } from "lucide-react"
+
 import { AnimatedSection } from "@/components/common/AnimatedSection"
 import { SectionHeading } from "@/components/common/SectionHeading"
 import { profile } from "@/data"
-import { Download, FileText, GraduationCap, Calendar, Compass } from "lucide-react"
 
 export default function Resume() {
   const edu = profile.education

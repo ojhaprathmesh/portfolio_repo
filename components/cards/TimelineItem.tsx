@@ -3,6 +3,7 @@
 
 import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
+
 import type { ExperienceItem } from "@/types"
 
 interface TimelineItemProps {

@@ -1,9 +1,9 @@
 // filepath: components/sections/Skills.tsx
 "use client"
 
+import { SkillGroup } from "@/components/cards/SkillGroup"
 import { AnimatedSection } from "@/components/common/AnimatedSection"
 import { SectionHeading } from "@/components/common/SectionHeading"
-import { SkillGroup } from "@/components/cards/SkillGroup"
 import { skillGroups } from "@/data"
 
 export default function Skills() {
