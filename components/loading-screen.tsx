@@ -1,8 +1,9 @@
-// filepath: components/loading-screen.tsx
 "use client"
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
+import { Canvas } from "@react-three/fiber"
+import { WaterRipplePlane } from "./effects/WaterRipplePlane"
 
 interface LoadingScreenProps {
   onStartTransition?: () => void
@@ -11,11 +12,8 @@ interface LoadingScreenProps {
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
-// ─── Blueprint P SVG Component ────────────────────────────────────────────────
-// Renders a 2D faceted P folded ribbon centered in a 400x400 CAD blueprint composition
 function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: boolean; shouldReduceMotion: boolean }) {
   if (shouldReduceMotion) {
-    // Simplified static representation for reduced motion
     return (
       <svg
         width="220"
@@ -26,36 +24,36 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
         className="overflow-visible"
         aria-hidden="true"
       >
-        <g filter="url(#softGlow)">
-          <path d="M328 252H720L624 348H424V770L328 866V252Z" fill="url(#whiteFace)" />
-          <path d="M624 348L720 252V538L624 634V348Z" fill="url(#silverFace)" />
-          <path d="M424 538H624V634H520L424 538Z" fill="url(#silverLower)" />
+        <g filter="url(#softGlowS)">
+          <path d="M328 252H720L624 348H424V770L328 866V252Z" fill="url(#whiteFaceS)" />
+          <path d="M624 348L720 252V538L624 634V348Z" fill="url(#silverFaceS)" />
+          <path d="M424 538H624V634H520L424 538Z" fill="url(#silverLowerS)" />
           <path d="M424 348H624V538H424V348Z" fill="#050505" />
-          <path d="M424 538L520 634L424 730V538Z" fill="url(#shadowFold)" />
-          <path d="M328 866L424 770V730L328 826V866Z" fill="url(#whiteLeg)" />
+          <path d="M424 538L520 634L424 730V538Z" fill="url(#shadowFoldS)" />
+          <path d="M328 866L424 770V730L328 826V866Z" fill="url(#whiteLegS)" />
         </g>
         <defs>
-          <linearGradient id="whiteFace" x1="328" y1="252" x2="672" y2="786" gradientUnits="userSpaceOnUse">
+          <linearGradient id="whiteFaceS" x1="328" y1="252" x2="672" y2="786" gradientUnits="userSpaceOnUse">
             <stop stopColor="#FFFFFF"/>
             <stop offset="1" stopColor="#EDEDED"/>
           </linearGradient>
-          <linearGradient id="whiteLeg" x1="328" y1="730" x2="424" y2="866" gradientUnits="userSpaceOnUse">
+          <linearGradient id="whiteLegS" x1="328" y1="730" x2="424" y2="866" gradientUnits="userSpaceOnUse">
             <stop stopColor="#FFFFFF"/>
             <stop offset="1" stopColor="#EDEDED"/>
           </linearGradient>
-          <linearGradient id="silverFace" x1="624" y1="252" x2="720" y2="634" gradientUnits="userSpaceOnUse">
+          <linearGradient id="silverFaceS" x1="624" y1="252" x2="720" y2="634" gradientUnits="userSpaceOnUse">
             <stop stopColor="#E5E5E5"/>
             <stop offset="1" stopColor="#999999"/>
           </linearGradient>
-          <linearGradient id="silverLower" x1="424" y1="538" x2="624" y2="634" gradientUnits="userSpaceOnUse">
+          <linearGradient id="silverLowerS" x1="424" y1="538" x2="624" y2="634" gradientUnits="userSpaceOnUse">
             <stop stopColor="#B5B5B5"/>
             <stop offset="1" stopColor="#7F7F7F"/>
           </linearGradient>
-          <linearGradient id="shadowFold" x1="424" y1="538" x2="520" y2="730" gradientUnits="userSpaceOnUse">
+          <linearGradient id="shadowFoldS" x1="424" y1="538" x2="520" y2="730" gradientUnits="userSpaceOnUse">
             <stop stopColor="#333333"/>
             <stop offset="1" stopColor="#111111"/>
           </linearGradient>
-          <filter id="softGlow" x="280" y="204" width="488" height="710" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <filter id="softGlowS" x="280" y="204" width="488" height="710" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
             <feDropShadow dx="0" dy="0" stdDeviation="12" floodColor="#FFFFFF" floodOpacity="0.08"/>
           </filter>
         </defs>
@@ -75,10 +73,9 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
     >
       <motion.g
         animate={triggerRipple ? { opacity: 0, scale: 0.95 } : { opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: EASE }}
+        transition={{ duration: 1.1, ease: "easeOut" }}
         style={{ transformOrigin: "200px 200px" }}
       >
-        {/* Concentric construction circles at the center of gravity (200, 200) */}
         <motion.circle
           cx="200" cy="200" r="140"
           stroke="rgba(255,255,255,0.02)"
@@ -105,7 +102,6 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           transition={{ duration: 1.2, delay: 0.3, ease: "easeInOut" }}
         />
 
-        {/* Construction circles around the cutout center (200, 153.6) */}
         <motion.circle
           cx="200" cy="153.6" r="54.4"
           stroke="rgba(255,255,255,0.06)"
@@ -124,7 +120,6 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           transition={{ duration: 0.4, delay: 0.5 }}
         />
 
-        {/* Horizontal guide lines (aligned exactly with logo vertices) */}
         {[
           { y: 77.2, delay: 0.15, op: "rgba(255,255,255,0.06)" },
           { y: 115.6, delay: 0.20, op: "rgba(255,255,255,0.04)" },
@@ -144,7 +139,6 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           />
         ))}
 
-        {/* Vertical guide lines (aligned exactly with logo vertices) */}
         {[
           { x: 121.6, delay: 0.18, op: "rgba(255,255,255,0.06)" },
           { x: 160.0, delay: 0.23, op: "rgba(255,255,255,0.04)" },
@@ -163,7 +157,6 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           />
         ))}
 
-        {/* Diagonal guides and intersection webs */}
         <motion.line
           x1="20" y1="20" x2="380" y2="380"
           stroke="rgba(255,255,255,0.02)"
@@ -197,7 +190,6 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
         />
 
-        {/* Bounding box corner tick marks */}
         {[
           { x: 121.6, y: 77.2, path: "M 121.6 87.2 L 121.6 77.2 L 131.6 77.2" },
           { x: 278.4, y: 77.2, path: "M 268.4 77.2 L 278.4 77.2 L 278.4 87.2" },
@@ -217,7 +209,6 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           />
         ))}
 
-        {/* Reference node points */}
         {[
           [121.6, 77.2], [278.4, 77.2], [278.4, 230.0],
           [160.0, 115.6], [240.0, 191.6], [200.0, 200.0],
@@ -233,18 +224,13 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           />
         ))}
 
-        {/* CAD Blueprint Annotation Texts */}
         <text x="127" y="73" fill="rgba(255,255,255,0.15)" fontFamily="monospace" fontSize="5" letterSpacing="0.08em">P_STEM.START [121.6, 77.2]</text>
         <text x="127" y="318" fill="rgba(255,255,255,0.12)" fontFamily="monospace" fontSize="5" letterSpacing="0.08em">P_STEM.END [121.6, 322.8]</text>
         <text x="246" y="148" fill="rgba(255,255,255,0.12)" fontFamily="monospace" fontSize="5" letterSpacing="0.08em">R_BOWL = 76.00</text>
         <text x="206" y="196" fill="rgba(255,255,255,0.2)" fontFamily="monospace" fontSize="5" letterSpacing="0.08em">CTR_OF_GRAV [200, 200]</text>
       </motion.g>
 
-      {/* ──────────────────────────────────────────────────────── */}
-      {/* THE 2D LETTER P — centered exactly at (200, 200)         */}
-      {/* ──────────────────────────────────────────────────────── */}
       <g transform="translate(-9.6, -23.6) scale(0.40)" filter="url(#softGlow)">
-        {/* Facet 1: Main White Face (Stem & Top folding curve) */}
         <motion.path
           d="M328 252H720L624 348H424V770L328 866V252Z"
           fill="url(#whiteFace)"
@@ -258,7 +244,6 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           }}
         />
 
-        {/* Facet 2: White Leg Bottom Bevel */}
         <motion.path
           d="M328 866L424 770V730L328 826V866Z"
           fill="url(#whiteLeg)"
@@ -272,7 +257,6 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           }}
         />
 
-        {/* Facet 3: Silver Loop Outer Curve */}
         <motion.path
           d="M624 348L720 252V538L624 634V348Z"
           fill="url(#silverFace)"
@@ -286,7 +270,6 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           }}
         />
 
-        {/* Facet 4: Silver Lower Horizontal Fold */}
         <motion.path
           d="M424 538H624V634H520L424 538Z"
           fill="url(#silverLower)"
@@ -300,7 +283,6 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           }}
         />
 
-        {/* Facet 5: Shadow Fold Under */}
         <motion.path
           d="M424 538L520 634L424 730V538Z"
           fill="url(#shadowFold)"
@@ -314,7 +296,6 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
           }}
         />
 
-        {/* Center Cut-out Mask (Black center) */}
         <motion.path
           d="M424 348H624V538H424V348Z"
           fill="#050505"
@@ -364,17 +345,26 @@ function BlueprintP({ triggerRipple, shouldReduceMotion }: { triggerRipple: bool
   )
 }
 
-// ─── Main LoadingScreen ───────────────────────────────────────────────────────
+// --- TRANSITION LAYER STRUCTURE ---
+// z-index hierarchy:
+// z-[100]: Ripple Canvas (creates distortion between layers)
+// z-[90]:  Loading Screen (fades out during ripple)
+// z-[1]:   Landing Page (fades in through ripple)
+
 export function LoadingScreen({ onStartTransition, onComplete }: LoadingScreenProps) {
   const [progress, setProgress] = useState(0)
-  const [isComplete, setIsComplete] = useState(false)
-  const [triggerRipple, setTriggerRipple] = useState(false)
+  const [phase, setPhase] = useState<"loading" | "rippling" | "revealed">("loading")
+  const hasPlayedRef = useRef(false)
+  const [rippleKey, setRippleKey] = useState(0)
   
   const shouldReduceMotion = useReducedMotion() ?? false
 
+  // Progress animation
   useEffect(() => {
+    if (hasPlayedRef.current) return
+    hasPlayedRef.current = true
 
-    const duration = shouldReduceMotion ? 1200 : 2200 // Slightly faster if reduced motion requested
+    const duration = shouldReduceMotion ? 1200 : 2200
     const interval = 16
     const steps = Math.floor(duration / interval)
     let step = 0
@@ -382,79 +372,127 @@ export function LoadingScreen({ onStartTransition, onComplete }: LoadingScreenPr
     const timer = setInterval(() => {
       step++
       const t = step / steps
-      // Custom ease to simulate architectural calculation pause/speedups
       const eased = t < 0.75 ? (t / 0.75) * 0.88 : 0.88 + ((t - 0.75) / 0.25) * 0.12
       const next = Math.min(eased * 100 + Math.random() * 1.0, 100)
-
       setProgress(next)
 
       if (step >= steps) {
         clearInterval(timer)
         setProgress(100)
-        
-
-
-        // 1. Trigger the monochrome ripple and dissolve
-        setTriggerRipple(true)
-        if (onStartTransition) onStartTransition()
-
-        // 2. Dissolve fade-out duration
-        setTimeout(() => {
-          setIsComplete(true)
-          setTimeout(onComplete, 50)
-        }, 800)
+        // Trigger the ripple transition
+        setRippleKey(k => k + 1)
+        setPhase("rippling")
+        onStartTransition?.()
       }
     }, interval)
 
     return () => clearInterval(timer)
-  }, [onStartTransition, onComplete, shouldReduceMotion])
+  }, [onStartTransition, shouldReduceMotion])
+
+  const handleRippleComplete = () => {
+    setPhase("revealed")
+    onComplete()
+  }
+
+  // Reduced motion fallback
+  if (shouldReduceMotion) {
+    return (
+      <AnimatePresence>
+        {phase !== "revealed" && (
+          <motion.div
+            key="loader"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050505]"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <BlueprintP triggerRipple={false} shouldReduceMotion={true} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    )
+  }
+
+  const isLoaderVisible = phase === "loading" || phase === "rippling"
+  const isRippleActive = phase === "rippling"
 
   return (
-    <AnimatePresence>
-      {!isComplete && (
-        <motion.div
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-[100] overflow-hidden"
-          style={{ background: "#050505" }}
-          aria-label="Loading portfolio"
-          aria-live="polite"
-        >
-          {/* ── Architectural blueprint crossing guide lines (full-screen) ── */}
-          {!shouldReduceMotion && (
-            <>
+    <>
+      {/* RIPPLE LAYER: z-[100] - Sits between loader and landing */}
+      <AnimatePresence>
+        {isRippleActive && (
+          <motion.div
+            key={`ripple-${rippleKey}`}
+            className="fixed inset-0 z-[100] pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <Canvas orthographic camera={{ zoom: 1, position: [0, 0, 1] }}>
+              <WaterRipplePlane
+                active={true}
+                duration={4.0}
+                intensity={0.9}
+                onComplete={handleRippleComplete}
+              />
+            </Canvas>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* LOADING SCREEN LAYER: z-[90] - Fades out during ripple */}
+      <AnimatePresence>
+        {isLoaderVisible && (
+          <motion.div
+            key="loader-overlay"
+            className="fixed inset-0 z-[90] overflow-hidden pointer-events-none bg-[#050505]"
+            aria-label="Loading portfolio"
+            aria-live="polite"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: phase === "rippling" ? 0 : 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ 
+              duration: phase === "rippling" ? 1.2 : 0.3, 
+              ease: [0.16, 1, 0.3, 1] 
+            }}
+          >
+            {/* Blueprint Grid Background */}
+            <motion.div
+              className="absolute inset-0 pointer-events-none"
+              animate={{ opacity: phase === "rippling" ? 0 : 1 }}
+              transition={{ duration: 0.5 }}
+            >
               <motion.div
                 className="absolute left-0 right-0 h-px pointer-events-none"
                 style={{ top: "33.333%", background: "rgba(255,255,255,0.03)", originX: 0 }}
-                animate={triggerRipple ? { opacity: 0 } : { scaleX: 1, opacity: 1 }}
                 initial={{ scaleX: 0, opacity: 0 }}
-                transition={triggerRipple ? { duration: 0.3 } : { duration: 0.8, delay: 0.08, ease: EASE }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.08, ease: EASE }}
               />
               <motion.div
                 className="absolute left-0 right-0 h-px pointer-events-none"
                 style={{ top: "66.666%", background: "rgba(255,255,255,0.03)", originX: 1 }}
-                animate={triggerRipple ? { opacity: 0 } : { scaleX: 1, opacity: 1 }}
                 initial={{ scaleX: 0, opacity: 0 }}
-                transition={triggerRipple ? { duration: 0.3 } : { duration: 0.8, delay: 0.12, ease: EASE }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.12, ease: EASE }}
               />
               <motion.div
                 className="absolute top-0 bottom-0 w-px pointer-events-none"
                 style={{ left: "33.333%", background: "rgba(255,255,255,0.025)", originY: 0 }}
-                animate={triggerRipple ? { opacity: 0 } : { scaleY: 1, opacity: 1 }}
                 initial={{ scaleY: 0, opacity: 0 }}
-                transition={triggerRipple ? { duration: 0.3 } : { duration: 0.8, delay: 0.10, ease: EASE }}
+                animate={{ scaleY: 1, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.10, ease: EASE }}
               />
               <motion.div
                 className="absolute top-0 bottom-0 w-px pointer-events-none"
                 style={{ left: "66.666%", background: "rgba(255,255,255,0.025)", originY: 1 }}
-                animate={triggerRipple ? { opacity: 0 } : { scaleY: 1, opacity: 1 }}
                 initial={{ scaleY: 0, opacity: 0 }}
-                transition={triggerRipple ? { duration: 0.3 } : { duration: 0.8, delay: 0.14, ease: EASE }}
+                animate={{ scaleY: 1, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.14, ease: EASE }}
               />
 
-              {/* Technical scan line overlay */}
-              {!triggerRipple && (
+              {phase !== "rippling" && (
                 <motion.div
                   className="absolute left-0 right-0 h-px pointer-events-none"
                   style={{
@@ -464,142 +502,90 @@ export function LoadingScreen({ onStartTransition, onComplete }: LoadingScreenPr
                   transition={{ duration: 4.0, repeat: Infinity, ease: "linear" }}
                 />
               )}
-            </>
-          )}
+            </motion.div>
 
-          {/* ── Technical metadata labels (blueprint frame) ── */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={triggerRipple ? { opacity: 0 } : { opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="absolute top-6 left-7 font-mono text-[8px] tracking-[0.22em] text-white/20 select-none"
-          >
-            SYS.IDENTITY // v2.0
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={triggerRipple ? { opacity: 0 } : { opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="absolute top-6 right-7 font-mono text-[8px] tracking-[0.22em] text-right text-white/20 select-none"
-          >
-            SCALE_0.40 // CAD_REV
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={triggerRipple ? { opacity: 0 } : { opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="absolute bottom-6 left-7 font-mono text-[8px] tracking-[0.22em] text-white/15 select-none"
-          >
-            LOC.X200 // Y200
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={triggerRipple ? { opacity: 0 } : { opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="absolute bottom-6 right-7 font-mono text-[8px] tracking-[0.22em] text-right text-white/15 select-none"
-          >
-            MONOCHROME_SYSTEM
-          </motion.div>
-
-          {/* ── Center Content: Logo + Loader ── */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-10">
-            {/* Centered SVG Logo */}
+            {/* Metadata Labels */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={triggerRipple ? { scale: 0.92, opacity: 0 } : { opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="relative"
+              animate={{ opacity: phase === "rippling" ? 0 : 1 }}
+              transition={{ duration: 0.3 }}
+              className="absolute top-6 left-7 font-mono text-[8px] tracking-[0.22em] text-white/20 select-none"
             >
-              <BlueprintP triggerRipple={triggerRipple} shouldReduceMotion={shouldReduceMotion} />
-
-              {/* Faint white depth glow behind P */}
-              <div
-                className="absolute inset-0 -z-10 pointer-events-none"
-                style={{
-                  background: "radial-gradient(circle 90px at 50% 50%, rgba(255,255,255,0.015) 0%, transparent 70%)",
-                }}
-              />
+              SYS.IDENTITY // v2.0
             </motion.div>
 
-            {/* Progress and status indicators */}
             <motion.div
-              initial={{ opacity: 0, y: 5 }}
-              animate={triggerRipple ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.4 }}
-              className="flex flex-col items-center gap-3.5 w-48"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: phase === "rippling" ? 0 : 1 }}
+              transition={{ duration: 0.3 }}
+              className="absolute top-6 right-7 font-mono text-[8px] tracking-[0.22em] text-right text-white/20 select-none"
             >
-              <span className="font-mono text-[8px] tracking-[0.3em] uppercase text-white/30 select-none">
-                CONSTRUCTING IDENTITY
-              </span>
-
-              {/* Progress bar and label */}
-              <div className="w-full space-y-2">
-                <div className="relative h-px w-full" style={{ background: "rgba(255,255,255,0.06)" }}>
-                  <div
-                    className="absolute inset-y-0 left-0 bg-white/70 transition-[width] duration-100 ease-out"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-                <div className="flex justify-between items-center font-mono text-[8px] text-white/20 uppercase tracking-widest">
-                  <span>LOADING</span>
-                  <span className="text-white/40">{Math.round(progress).toString().padStart(3, "0")}%</span>
-                </div>
-              </div>
+              SCALE_0.40 // CAD_REV
             </motion.div>
-          </div>
 
-          {/* ── Grayscale Water Drop Ripple Waves ── */}
-          {triggerRipple && !shouldReduceMotion && (
-            <>
-              {/* Ripple Ring 1 */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: phase === "rippling" ? 0 : 1 }}
+              transition={{ duration: 0.3 }}
+              className="absolute bottom-6 left-7 font-mono text-[8px] tracking-[0.22em] text-white/15 select-none"
+            >
+              LOC.X200 // Y200
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: phase === "rippling" ? 0 : 1 }}
+              transition={{ duration: 0.3 }}
+              className="absolute bottom-6 right-7 font-mono text-[8px] tracking-[0.22em] text-right text-white/15 select-none"
+            >
+              MONOCHROME_SYSTEM
+            </motion.div>
+
+            {/* Center Content: Logo + Loader */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-10">
               <motion.div
-                className="absolute rounded-full border border-white/40 pointer-events-none z-50"
-                style={{
-                  width: 80,
-                  height: 80,
-                  left: "50%",
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                }}
-                initial={{ scale: 0.1, opacity: 0.9, borderWidth: "3px" }}
-                animate={{ scale: 16, opacity: 0, borderWidth: "0.2px" }}
-                transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
-              />
-              {/* Ripple Ring 2 */}
+                initial={{ opacity: 0 }}
+                animate={phase === "rippling" ? { scale: 1.05, opacity: 0 } : { opacity: 1 }}
+                transition={phase === "rippling" ? { duration: 0.6, ease: "easeOut" } : { duration: 0.5 }}
+                className="relative"
+              >
+                <BlueprintP triggerRipple={phase === "rippling"} shouldReduceMotion={shouldReduceMotion} />
+
+                <div
+                  className="absolute inset-0 -z-10 pointer-events-none"
+                  style={{
+                    background: "radial-gradient(circle 90px at 50% 50%, rgba(255,255,255,0.015) 0%, transparent 70%)",
+                  }}
+                />
+              </motion.div>
+
               <motion.div
-                className="absolute rounded-full border border-white/20 pointer-events-none z-50"
-                style={{
-                  width: 80,
-                  height: 80,
-                  left: "50%",
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                }}
-                initial={{ scale: 0.1, opacity: 0.7, borderWidth: "2px" }}
-                animate={{ scale: 12, opacity: 0, borderWidth: "0.2px" }}
-                transition={{ duration: 1.3, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              />
-              {/* Ripple Ring 3 */}
-              <motion.div
-                className="absolute rounded-full border border-white/10 pointer-events-none z-40"
-                style={{
-                  width: 120,
-                  height: 120,
-                  left: "50%",
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                }}
-                initial={{ scale: 0.05, opacity: 0.4, borderWidth: "1px" }}
-                animate={{ scale: 9, opacity: 0, borderWidth: "0.1px" }}
-                transition={{ duration: 1.5, delay: 0.05, ease: "easeOut" }}
-              />
-            </>
-          )}
-        </motion.div>
-      )}
-    </AnimatePresence>
+                initial={{ opacity: 0, y: 5 }}
+                animate={phase === "rippling" ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center gap-3.5 w-48"
+              >
+                <span className="font-mono text-[8px] tracking-[0.3em] uppercase text-white/30 select-none">
+                  CONSTRUCTING IDENTITY
+                </span>
+
+                <div className="w-full space-y-2">
+                  <div className="relative h-px w-full" style={{ background: "rgba(255,255,255,0.06)" }}>
+                    <div
+                      className="absolute inset-y-0 left-0 bg-white/70 transition-[width] duration-100 ease-out"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                  <div className="flex justify-between items-center font-mono text-[8px] text-white/20 uppercase tracking-widest">
+                    <span>LOADING</span>
+                    <span className="text-white/40">{Math.round(progress).toString().padStart(3, "0")}%</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
