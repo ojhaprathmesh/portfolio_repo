@@ -14,7 +14,7 @@ export default function Experience() {
           <SectionHeading
             number="02"
             title="Professional Experience"
-            subtitle="My journey through freelance projects, open-source work, and academic building."
+            subtitle="Internships and technical contributions across mobile, web, and university events."
           />
         </AnimatedSection>
 

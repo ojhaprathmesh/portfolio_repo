@@ -45,6 +45,11 @@ export default function Resume() {
                   <Calendar size={13} className="text-white/30" />
                   <span className="font-mono">{edu.period}</span>
                 </div>
+                {edu.gpa && (
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-white/50">{edu.gpa}</span>
+                  </div>
+                )}
                 <div className="flex items-start gap-2">
                   <Compass size={13} className="text-white/30 mt-0.5" />
                   <span>Specialization Focus: {edu.focus}</span>

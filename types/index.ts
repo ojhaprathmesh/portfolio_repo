@@ -47,6 +47,11 @@ export interface SocialLink {
   icon?: string
 }
 
+export interface CodingProfileStat {
+  label: string
+  value: string
+}
+
 export interface CodingProfile {
   platform: string
   username: string
@@ -55,6 +60,8 @@ export interface CodingProfile {
   statLabel?: string
   badge?: string
   color?: string
+  secondaryStats?: CodingProfileStat[]
+  isLive?: boolean
 }
 
 // ─── Projects ─────────────────────────────────────────────────────────────────

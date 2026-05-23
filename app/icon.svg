@@ -1,0 +1,36 @@
+<svg width="32" height="32" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="1024" fill="#050505"/>
+  <g filter="url(#softGlow)">
+    <path d="M328 252H720L624 348H424V770L328 866V252Z" fill="url(#whiteFace)"/>
+    <path d="M624 348L720 252V538L624 634V348Z" fill="url(#silverFace)"/>
+    <path d="M424 538H624V634H520L424 538Z" fill="url(#silverLower)"/>
+    <path d="M424 348H624V538H424V348Z" fill="#050505"/>
+    <path d="M424 538L520 634L424 730V538Z" fill="url(#shadowFold)"/>
+    <path d="M328 866L424 770V730L328 826V866Z" fill="url(#whiteLeg)"/>
+  </g>
+  <defs>
+    <linearGradient id="whiteFace" x1="328" y1="252" x2="672" y2="786" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EDEDED"/>
+    </linearGradient>
+    <linearGradient id="whiteLeg" x1="328" y1="730" x2="424" y2="866" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EDEDED"/>
+    </linearGradient>
+    <linearGradient id="silverFace" x1="624" y1="252" x2="720" y2="634" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E5E5E5"/>
+      <stop offset="1" stop-color="#999999"/>
+    </linearGradient>
+    <linearGradient id="silverLower" x1="424" y1="538" x2="624" y2="634" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B5B5B5"/>
+      <stop offset="1" stop-color="#7F7F7F"/>
+    </linearGradient>
+    <linearGradient id="shadowFold" x1="424" y1="538" x2="520" y2="730" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#333333"/>
+      <stop offset="1" stop-color="#111111"/>
+    </linearGradient>
+    <filter id="softGlow" x="280" y="204" width="488" height="710" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#FFFFFF" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+</svg>

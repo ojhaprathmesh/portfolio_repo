@@ -1,40 +1,20 @@
 // filepath: data/coding.ts
-import type { CodingProfile } from "@/types"
+// Static handles only — live stats are fetched via /api/coding-stats
 
-export const codingProfiles: CodingProfile[] = [
-  {
-    platform: "LeetCode",
-    username: "ojhaprathmesh",
-    url: "https://leetcode.com/ojhaprathmesh",
-    stat: "200+",
-    statLabel: "Problems Solved",
-    badge: "Knight",
-    color: "#FFA116",
-  },
-  // {
-  //   platform: "CodeChef",
-  //   username: "ojhaprathmesh",
-  //   url: "https://codechef.com/users/ojhaprathmesh",
-  //   stat: "3★",
-  //   statLabel: "Rating",
-  //   badge: "3 Star",
-  //   color: "#5B4638",
-  // },
-  // {
-  //   platform: "HackerRank",
-  //   username: "ojhaprathmesh",
-  //   url: "https://hackerrank.com/ojhaprathmesh",
-  //   stat: "5★",
-  //   statLabel: "Problem Solving",
-  //   badge: "Gold",
-  //   color: "#00EA64",
-  // },
-  {
+import { CODING_USERNAME } from "@/lib/coding/types"
+
+export const codingConfig = {
+  username: CODING_USERNAME,
+  github: {
     platform: "GitHub",
-    username: "ojhaprathmesh",
-    url: "https://github.com/ojhaprathmesh",
-    stat: "500+",
-    statLabel: "Contributions",
+    username: CODING_USERNAME,
+    url: `https://github.com/${CODING_USERNAME}`,
     color: "#F0F6FC",
   },
-]
+  leetcode: {
+    platform: "LeetCode",
+    username: CODING_USERNAME,
+    url: `https://leetcode.com/${CODING_USERNAME}`,
+    color: "#FFA116",
+  },
+} as const

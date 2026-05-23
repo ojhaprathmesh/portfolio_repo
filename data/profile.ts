@@ -9,27 +9,28 @@ export const profile: ProfileInfo = {
   subline: "Prathmesh Ojha · Full-Stack · AI/ML · Mobile · Finance",
   tagline: "Engineering products at the intersection of code, data, and design.",
   email: "prathmesh.ojha.23cse@bmu.edu.in",
-  location: "India",
+  location: "Gurugram, Haryana, India",
   timezone: "IST (UTC+5:30)",
   shortBio:
-    "I'm a Computer Science undergraduate specialising in Data Science & AI — building full-stack products, mobile apps, AI-backed tools, and financial analytics projects. I ship fast, iterate often, and care deeply about the craft.",
+    "CS student with hands-on experience in full-stack and AI/ML projects, a strong foundation in data science and machine learning, and a solid understanding of building scalable applications and managing high-impact events.",
   bio: [
-    "B.Tech CSE undergraduate focused on Data Science & Artificial Intelligence.",
-    "I build full-stack web applications, cross-platform mobile apps, and AI-powered tools.",
-    "Currently exploring financial analytics, LLM integration, and product engineering.",
-    "Every project is a chance to learn something new and ship something real.",
+    "B.Tech CSE undergraduate at BML Munjal University, specialising in Data Science & Artificial Intelligence (expected 2027).",
+    "I build full-stack web applications, cross-platform mobile apps, and AI-powered tools — from financial analytics dashboards to rescue-to-adoption platforms.",
+    "Interned at Getting Roots as an App Development Intern, shipping a Flutter app with Clean Architecture and modular feature workflows.",
+    "Enrolled in the Credit-Linked Program in Data Science at Daksh Gurukul, IIT Guwahati.",
   ],
   education: {
-    institution: "Your University Name",
+    institution: "BML Munjal University",
     degree: "B.Tech — Computer Science & Engineering (Data Science & AI)",
-    period: "2022 – 2026",
-    focus: "Data Science, Artificial Intelligence, Full-Stack Development",
+    period: "Aug 2023 – 2027",
+    gpa: "CGPA 7.58",
+    focus: "Data Science, Artificial Intelligence, Full-Stack & Mobile Development",
     details:
-      "Core coursework: Machine Learning, Deep Learning, Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks",
+      "Core areas: Machine Learning, Deep Learning, Data Structures & Algorithms, RESTful APIs, Clean Architecture, and quantitative finance analytics.",
   },
   availability: "OPEN TO OPPORTUNITIES",
   availabilityStatus: "available",
-  resumePath: "/resume/Prathmesh_Ojha_Resume.pdf",
+  resumePath: "/docs/Main_Resume.pdf",
 }
 
 // ─── Backward compat re-export ────────────────────────────────────────────────

@@ -25,5 +25,5 @@ export { skillGroups, skills, techMarqueeItems, conceptMarqueeItems } from "./sk
 // Achievements
 export { achievements } from "./achievements"
 
-// Coding Profiles
-export { codingProfiles } from "./coding"
+// Coding platform handles (live stats via /api/coding-stats)
+export { codingConfig } from "./coding"

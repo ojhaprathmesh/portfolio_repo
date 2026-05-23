@@ -7,7 +7,7 @@ import { profile } from "@/data"
 
 export function About() {
   return (
-    <section id="about" className="py-24 md:py-36 bg-[#050505] relative overflow-hidden">
+    <section id="about" className="min-h-full py-16 md:py-20 pb-28 md:pb-32 bg-[#050505] relative">
       {/* Visual glowing accent in the background */}
       <div className="absolute right-[10%] top-[20%] w-72 h-72 rounded-full bg-white/[0.02] blur-[120px] pointer-events-none select-none" />
       <div className="absolute left-[5%] bottom-[10%] w-60 h-60 rounded-full bg-white/[0.015] blur-[100px] pointer-events-none select-none" />

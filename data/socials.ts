@@ -11,14 +11,8 @@ export const socialLinks: SocialLink[] = [
   {
     label: "LinkedIn",
     handle: "ojhaprathmesh",
-    url: "https://linkedin.com/in/ojhaprathmesh",
+    url: "https://www.linkedin.com/in/ojhaprathmesh",
     icon: "linkedin",
-  },
-  {
-    label: "Twitter",
-    handle: "@ojhaprathmesh",
-    url: "https://twitter.com/ojhaprathmesh",
-    icon: "twitter",
   },
   {
     label: "Email",

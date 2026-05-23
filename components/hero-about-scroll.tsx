@@ -100,8 +100,8 @@ export function HeroAboutScroll() {
               <Hero />
             </div>
 
-            {/* Slide 2: About Section (Right side) */}
-            <div className="w-[100vw] h-full overflow-y-auto">
+            {/* Slide 2: About Section (Right side) — scrollable within viewport */}
+            <div className="w-[100vw] h-full overflow-y-auto overflow-x-hidden overscroll-y-contain scroll-smooth">
               <About />
             </div>
           </motion.div>
