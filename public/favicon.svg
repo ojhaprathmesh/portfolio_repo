@@ -1,5 +1,5 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1024" height="1024" fill="#050505"/>
+  <rect width="1024" height="1024" rx="220" fill="#050505"/>
 
   <g transform="translate(0 -42)" filter="url(#softGlow)">
     <path d="M328 252H720L624 348H424V770L328 866V252Z" fill="url(#whiteFace)"/>
