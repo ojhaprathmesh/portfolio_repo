@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Prathmesh Ojha" }],
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/favicon.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     title: siteMetadata.title,
