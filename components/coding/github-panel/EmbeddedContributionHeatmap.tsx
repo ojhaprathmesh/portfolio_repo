@@ -32,7 +32,7 @@ export function EmbeddedContributionHeatmap({ weeks }: EmbeddedContributionHeatm
       onClick={(e) => e.stopPropagation()}
       onKeyDown={(e) => e.stopPropagation()}
     >
-      <div className="flex items-start justify-between gap-2 mb-2 min-h-[32px]">
+      <div className="flex items-start justify-between gap-2 mb-2 min-h-8">
         <div>
           <span className="font-mono text-[8px] tracking-[0.2em] text-[#5F5F5F] uppercase block">
             CONTRIBUTION_ACTIVITY
@@ -47,7 +47,7 @@ export function EmbeddedContributionHeatmap({ weeks }: EmbeddedContributionHeatm
       </div>
 
       <div
-        className="w-full grid gap-[2px] p-2 border border-white/[0.06] bg-[#080808] rounded-[2px]"
+        className="w-full grid gap-0.5 p-2 border border-white/6 bg-[#080808] rounded-[2px]"
         style={{
           gridTemplateColumns: `repeat(${HEATMAP_SIZE.cols}, minmax(0, 1fr))`,
           gridTemplateRows: `repeat(${HEATMAP_SIZE.rows}, minmax(0, 1fr))`,
@@ -63,8 +63,8 @@ export function EmbeddedContributionHeatmap({ weeks }: EmbeddedContributionHeatm
               <button
                 key={`${col}-${row}-${day.date}`}
                 type="button"
-                className={`aspect-square w-full min-h-[6px] max-h-[10px] rounded-[1px] border transition-[box-shadow,background-color] hover:ring-1 hover:ring-white/30 focus:outline-none focus:ring-1 focus:ring-white/30 ${
-                  isToday ? "border-white/25" : "border-white/[0.04]"
+                className={`aspect-square w-full min-h-1.5 max-h-2.5 rounded-[1px] border transition-[box-shadow,background-color] hover:ring-1 hover:ring-white/30 focus:outline-none focus:ring-1 focus:ring-white/30 ${
+                  isToday ? "border-white/25" : "border-white/4"
                 }`}
                 style={{
                   gridColumn: col + 1,
@@ -95,7 +95,7 @@ export function EmbeddedContributionHeatmap({ weeks }: EmbeddedContributionHeatm
           {[0.08, 0.35, 0.55, 0.75, 1].map((o) => (
             <span
               key={o}
-              className="w-[8px] h-[8px] rounded-[1px] border border-white/[0.04]"
+              className="w-2 h-2 rounded-[1px] border border-white/4"
               style={{ backgroundColor: `rgba(245, 245, 245, ${o})` }}
             />
           ))}

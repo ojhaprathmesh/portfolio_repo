@@ -11,7 +11,7 @@ interface SkillGroupProps {
 
 export function SkillGroup({ group }: SkillGroupProps) {
   return (
-    <div className="bg-[#0d0d0d] border border-white/[0.04] p-6 rounded-sm flex flex-col h-full hover:border-white/[0.08] transition-colors duration-300">
+    <div className="bg-[#0d0d0d] border border-white/4 p-6 rounded-sm flex flex-col h-full hover:border-white/8 transition-colors duration-300">
       {/* Category header */}
       <div className="mb-5 select-none">
         <span className="font-mono text-[9px] tracking-[0.25em] text-white/40 uppercase block mb-1">
@@ -27,7 +27,7 @@ export function SkillGroup({ group }: SkillGroupProps) {
         {group.skills.map((skill) => (
           <div
             key={skill.name}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-sm bg-white/[0.02] border border-white/[0.04] transition-colors hover:bg-white/[0.04]"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-sm bg-white/2 border border-white/4 transition-colors hover:bg-white/4"
           >
             {/* Status dot representation */}
             <span

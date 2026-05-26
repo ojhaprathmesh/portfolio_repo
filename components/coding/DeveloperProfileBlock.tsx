@@ -20,7 +20,7 @@ export function DeveloperProfileBlock() {
   ]
 
   return (
-    <div className="p-5 md:p-6 bg-[#0d0d0d] border border-white/[0.04] rounded-sm">
+    <div className="p-5 md:p-6 bg-[#0d0d0d] border border-white/4 rounded-sm">
       <div className="flex items-center gap-2 mb-4">
         <span className="font-mono text-[9px] tracking-[0.25em] text-white/40 uppercase">
           developer.json

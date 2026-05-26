@@ -62,7 +62,6 @@ export default function Home() {
   }
 
   // Determine visibility based on phase
-  const isRippleActive = transitionPhase === "ripple"
   const isLandingVisible = transitionPhase === "ripple" || transitionPhase === "done"
 
   return (

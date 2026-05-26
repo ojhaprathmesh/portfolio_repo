@@ -76,7 +76,7 @@ export function Navbar({ isVisible = true }: NavbarProps) {
             transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
               isScrolled
-                ? "bg-[#050505]/75 backdrop-blur-md border-b border-white/[0.06] py-3.5"
+                ? "bg-[#050505]/75 backdrop-blur-md border-b border-white/6 py-3.5"
                 : "bg-transparent py-6"
             }`}
           >
@@ -221,7 +221,7 @@ export function Navbar({ isVisible = true }: NavbarProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
-                className="flex items-center gap-2.5 mt-8 border border-white/[0.06] px-4 py-2 rounded-full bg-white/[0.02]"
+                className="flex items-center gap-2.5 mt-8 border border-white/6 px-4 py-2 rounded-full bg-white/2"
               >
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40" />

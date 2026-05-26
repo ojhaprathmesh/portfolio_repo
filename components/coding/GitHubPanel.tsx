@@ -38,7 +38,7 @@ function MetricCell({
   const reduceMotion = useReducedMotion()
   return (
     <motion.div
-      className="relative px-3 py-2.5 border border-white/[0.06] bg-[#080808]/80"
+      className="relative px-3 py-2.5 border border-white/6 bg-[#080808]/80"
       initial={reduceMotion ? false : { opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
@@ -88,7 +88,7 @@ export function GitHubPanel({ stats }: GitHubPanelProps) {
           openProfile()
         }
       }}
-      className="group relative block h-full cursor-pointer overflow-hidden rounded-sm border border-white/[0.08] bg-[#0B0B0B] p-5 md:p-6 transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)]"
+      className="group relative block h-full cursor-pointer overflow-hidden rounded-sm border border-white/8 bg-[#0B0B0B] p-5 md:p-6 transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)]"
       initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.985 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
@@ -134,7 +134,7 @@ export function GitHubPanel({ stats }: GitHubPanelProps) {
       </div>
 
       {/* primary readout */}
-      <div className="relative mb-6 pb-6 border-b border-white/[0.06]">
+      <div className="relative mb-6 pb-6 border-b border-white/6">
         <span className="font-mono text-[8px] tracking-[0.22em] text-[#5F5F5F] uppercase block mb-3">
           SOURCE.ACTIVITY
         </span>
@@ -191,7 +191,7 @@ export function GitHubPanel({ stats }: GitHubPanelProps) {
       </div>
 
       {syncedLabel && (
-        <p className="relative mt-5 pt-4 border-t border-white/[0.05] font-mono text-[8px] tracking-wider text-[#5F5F5F] uppercase">
+        <p className="relative mt-5 pt-4 border-t border-white/5 font-mono text-[8px] tracking-wider text-[#5F5F5F] uppercase">
           Last synced · {syncedLabel}
         </p>
       )}

@@ -55,7 +55,7 @@ export function ConnectStrip() {
           />
         </a>
       ))}
-      <span className="flex items-center gap-2 px-4 py-2.5 bg-[#0d0d0d] border border-white/[0.04] rounded-sm font-mono text-[10px] tracking-wider text-white/35">
+      <span className="flex items-center gap-2 px-4 py-2.5 bg-[#0d0d0d] border border-white/4 rounded-sm font-mono text-[10px] tracking-wider text-white/35">
         <span className="w-1.5 h-1.5 rounded-full bg-sky-500/60 animate-pulse" />
         @{codingConfig.username}
       </span>

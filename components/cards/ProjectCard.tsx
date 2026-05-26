@@ -16,10 +16,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <motion.article
       whileHover={{ y: -6 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col h-full bg-[#0d0d0d] border border-white/[0.04] hover:border-white/[0.12] rounded-sm overflow-hidden transition-colors duration-500"
+      className="group relative flex flex-col h-full bg-[#0d0d0d] border border-white/4 hover:border-white/12 rounded-sm overflow-hidden transition-colors duration-500"
     >
       {/* Visual Header / Cover Image */}
-      <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-900">
+      <div className="relative aspect-video w-full overflow-hidden bg-neutral-900">
         <Image
           src={project.image}
           alt={project.title}
@@ -36,10 +36,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
             backgroundSize: "16px 16px",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#0d0d0d] via-transparent to-transparent" />
         
         {/* Status indicator tag */}
-        <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/[0.06]">
+        <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/6">
           <span
             className="w-1 h-1 rounded-full animate-pulse"
             style={{
@@ -77,12 +77,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </p>
 
         {/* Tech stack tags */}
-        <div className="mt-auto pt-4 border-t border-white/[0.04]">
+        <div className="mt-auto pt-4 border-t border-white/4">
           <div className="flex flex-wrap gap-1.5 mb-5">
             {project.stack.slice(0, 5).map((tech) => (
               <span
                 key={tech}
-                className="font-mono text-[9px] tracking-wider text-white/50 bg-white/[0.03] px-2 py-0.5 rounded-sm border border-white/[0.02]"
+                className="font-mono text-[9px] tracking-wider text-white/50 bg-white/3 px-2 py-0.5 rounded-sm border border-white/2"
               >
                 {tech}
               </span>

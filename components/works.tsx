@@ -63,7 +63,7 @@ export function Works() {
               className="group flex flex-col md:flex-row md:items-center justify-between gap-4"
             >
               {/* Date */}
-              <span className="font-mono text-xs text-muted-foreground tracking-widest order-1 md:order-none">
+              <span className="font-mono text-xs text-muted-foreground tracking-widest order-1 md:order-0">
                 {project.date}
               </span>
 
@@ -79,7 +79,7 @@ export function Works() {
               </motion.h3>
 
               {/* Stack */}
-              <div className="flex gap-2 flex-wrap order-2 md:order-none">
+              <div className="flex gap-2 flex-wrap order-2 md:order-0">
                 {project.stack.slice(0, 4).map((tag) => (
                   <span
                     key={tag}

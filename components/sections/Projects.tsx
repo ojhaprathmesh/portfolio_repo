@@ -79,7 +79,7 @@ function ProjectCylinderCard({
         pointerEvents: pointerEvents as any,
         transformStyle: "preserve-3d",
       }}
-      className="absolute w-[85vw] max-w-[420px] h-auto flex flex-col justify-center select-none"
+      className="absolute w-[85vw] max-w-105 h-auto flex flex-col justify-center select-none"
     >
       <ProjectCard project={project} />
     </motion.div>
@@ -131,7 +131,7 @@ export default function Projects() {
     <section
       ref={containerRef}
       id="projects"
-      className="relative h-[250vh] bg-[#050505] border-t border-white/[0.02]"
+      className="relative h-[250vh] bg-[#050505] border-t border-white/2"
     >
       {/* Sticky Fullscreen viewport */}
       <div className="sticky top-0 h-screen w-full flex flex-col justify-between py-12 md:py-16 overflow-hidden">
@@ -148,7 +148,7 @@ export default function Projects() {
 
           {/* Category Filters */}
           <AnimatedSection delay={0.1}>
-            <div className="flex flex-wrap items-center gap-2 md:gap-4 mt-8 border-b border-white/[0.03] pb-4">
+            <div className="flex flex-wrap items-center gap-2 md:gap-4 mt-8 border-b border-white/3 pb-4">
               {CATEGORIES.map((cat) => {
                 const isActive =
                   activeCategory === cat.value ||

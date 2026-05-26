@@ -16,7 +16,7 @@ export function TopLanguagesChart({ languages }: TopLanguagesChartProps) {
 
   return (
     <motion.div
-      className="rounded-sm border border-white/[0.06] bg-[#0a0a0a] p-5 md:p-6"
+      className="rounded-sm border border-white/6 bg-[#0a0a0a] p-5 md:p-6"
       initial={reduceMotion ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
@@ -41,7 +41,7 @@ export function TopLanguagesChart({ languages }: TopLanguagesChartProps) {
                   {lang.percentage}%
                 </span>
               </div>
-              <div className="h-[3px] bg-white/[0.04] rounded-full overflow-hidden">
+              <div className="h-0.75 bg-white/4 rounded-full overflow-hidden">
                 <motion.div
                   className="h-full bg-white/40 rounded-full"
                   initial={reduceMotion ? { width: `${(lang.percentage / max) * 100}%` } : { width: 0 }}

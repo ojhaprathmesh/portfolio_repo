@@ -10,12 +10,12 @@ export function TechStackIcons() {
 
   return (
     <motion.div
-      className="rounded-sm border border-white/[0.06] bg-[#0a0a0a] overflow-hidden"
+      className="rounded-sm border border-white/6 bg-[#0a0a0a] overflow-hidden"
       initial={reduceMotion ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="px-5 py-3 border-b border-white/[0.05]">
+      <div className="px-5 py-3 border-b border-white/5">
         <span className="font-mono text-[10px] tracking-[0.25em] text-white/50 uppercase">
           Tech stack
         </span>

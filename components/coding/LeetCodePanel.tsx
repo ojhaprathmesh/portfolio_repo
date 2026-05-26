@@ -34,7 +34,7 @@ export function LeetCodePanel({ stats }: LeetCodePanelProps) {
       href={stats.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block h-full rounded-sm border border-white/[0.06] bg-[#0a0a0a] border-l-2 border-l-white/20 p-5 md:p-6 hover:border-white/[0.12] hover:border-l-white/40 transition-all duration-300"
+      className="group block h-full rounded-sm border border-white/6 bg-[#0a0a0a] border-l-2 border-l-white/20 p-5 md:p-6 hover:border-white/12 hover:border-l-white/40 transition-all duration-300"
       initial={reduceMotion ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -79,7 +79,7 @@ export function LeetCodePanel({ stats }: LeetCodePanelProps) {
           return (
             <div key={key} className="flex items-center gap-3">
               <span className="font-mono text-[9px] text-white/30 w-12 shrink-0">{label}</span>
-              <div className="flex-1 h-px bg-white/[0.06] relative overflow-hidden">
+              <div className="flex-1 h-px bg-white/6 relative overflow-hidden">
                 <motion.div
                   className="absolute inset-y-0 left-0 h-px bg-white/50"
                   initial={reduceMotion ? { width: `${pct}%` } : { width: 0 }}
@@ -96,7 +96,7 @@ export function LeetCodePanel({ stats }: LeetCodePanelProps) {
       </div>
 
       {stats.ranking != null && (
-        <p className="pt-4 border-t border-white/[0.05] font-mono text-[10px] text-white/30">
+        <p className="pt-4 border-t border-white/5 font-mono text-[10px] text-white/30">
           Global rank{" "}
           <span className="text-white/55">#{stats.ranking.toLocaleString("en-IN")}</span>
         </p>

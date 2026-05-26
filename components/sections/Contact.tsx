@@ -17,7 +17,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 md:py-36 bg-[#050505] border-t border-white/[0.02]">
+    <section id="contact" className="py-24 md:py-36 bg-[#050505] border-t border-white/2">
       <div className="max-w-4xl mx-auto px-6 md:px-12">
         {/* Header */}
         <AnimatedSection>
@@ -78,7 +78,7 @@ export default function Contact() {
             </div>
 
             {/* Availability and timezone metadata */}
-            <div className="pt-6 border-t border-white/[0.04] space-y-4">
+            <div className="pt-6 border-t border-white/4 space-y-4">
               <div className="flex items-center gap-2.5 font-mono text-[10px] tracking-wider text-white/40">
                 <Globe size={13} className="text-white/20" />
                 <span>Based in {profile.location}</span>

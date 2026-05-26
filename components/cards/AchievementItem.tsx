@@ -24,10 +24,10 @@ export function AchievementItem({ achievement, index }: AchievementItemProps) {
   const itemIndex = (index + 1).toString().padStart(2, "0")
 
   return (
-    <div className="group relative flex flex-col md:flex-row gap-6 p-6 md:p-8 bg-[#0d0d0d] border border-white/[0.04] rounded-sm hover:border-white/[0.1] transition-all duration-300">
+    <div className="group relative flex flex-col md:flex-row gap-6 p-6 md:p-8 bg-[#0d0d0d] border border-white/4 rounded-sm hover:border-white/10 transition-all duration-300">
       
       {/* Metric callout on the right/top if exists */}
-      <div className="md:order-last flex flex-col justify-center items-start md:items-end gap-1 min-w-[120px]">
+      <div className="md:order-last flex flex-col justify-center items-start md:items-end gap-1 min-w-30">
         {achievement.metric ? (
           <>
             <span className="font-mono text-xl md:text-2xl font-light text-[#00E5FF] tracking-wider">

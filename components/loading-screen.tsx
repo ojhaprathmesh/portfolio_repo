@@ -374,7 +374,7 @@ export function LoadingScreen({ onStartTransition, onComplete }: LoadingScreenPr
       step++
       const t = step / steps
       const eased = t < 0.75 ? (t / 0.75) * 0.88 : 0.88 + ((t - 0.75) / 0.25) * 0.12
-      const next = Math.min(eased * 100 + Math.random() * 1.0, 100)
+      const next = Math.min(eased * 100 + Math.random() * 1.1, 100)
       setProgress(next)
 
       if (step >= steps) {
@@ -402,7 +402,7 @@ export function LoadingScreen({ onStartTransition, onComplete }: LoadingScreenPr
         {phase !== "revealed" && (
           <motion.div
             key="loader"
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050505]"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-[#050505]"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
@@ -424,7 +424,7 @@ export function LoadingScreen({ onStartTransition, onComplete }: LoadingScreenPr
         {isRippleActive && (
           <motion.div
             key={`ripple-${rippleKey}`}
-            className="fixed inset-0 z-[100] pointer-events-none"
+            className="fixed inset-0 z-100 pointer-events-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -447,7 +447,7 @@ export function LoadingScreen({ onStartTransition, onComplete }: LoadingScreenPr
         {isLoaderVisible && (
           <motion.div
             key="loader-overlay"
-            className="fixed inset-0 z-[90] overflow-hidden pointer-events-none bg-[#050505]"
+            className="fixed inset-0 z-90 overflow-hidden pointer-events-none bg-[#050505]"
             aria-label="Loading portfolio"
             aria-live="polite"
             initial={{ opacity: 1 }}

@@ -13,9 +13,9 @@ interface TimelineItemProps {
 
 export function TimelineItem({ item, index }: TimelineItemProps) {
   return (
-    <div className="relative pl-8 md:pl-12 pb-12 last:pb-0 border-l border-white/[0.06]">
+    <div className="relative pl-8 md:pl-12 pb-12 last:pb-0 border-l border-white/6">
       {/* Glow node anchor */}
-      <div className="absolute left-0 top-1.5 -translate-x-[4.5px] w-2.5 h-2.5 rounded-full bg-[#0d0d0d] border border-white/20 flex items-center justify-center">
+      <div className="absolute left-0 top-1.5 translate-x-[-4.5px] w-2.5 h-2.5 rounded-full bg-[#0d0d0d] border border-white/20 flex items-center justify-center">
         <span className="w-1 h-1 rounded-full bg-white" />
       </div>
 
@@ -63,12 +63,12 @@ export function TimelineItem({ item, index }: TimelineItemProps) {
       </ul>
 
       {/* Technologies & highlight footer */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-white/[0.03]">
+      <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-white/3">
         <div className="flex flex-wrap gap-1.5">
           {item.technologies.map((tech) => (
             <span
               key={tech}
-              className="font-mono text-[8px] tracking-wider text-white/40 bg-white/[0.02] border border-white/[0.04] px-2 py-0.5 rounded-sm"
+              className="font-mono text-[8px] tracking-wider text-white/40 bg-white/2 border border-white/4 px-2 py-0.5 rounded-sm"
             >
               {tech}
             </span>
@@ -76,7 +76,7 @@ export function TimelineItem({ item, index }: TimelineItemProps) {
         </div>
 
         {item.highlight && (
-          <span className="font-mono text-[9px] tracking-[0.15em] text-white bg-white/[0.03] border border-white/10 px-2.5 py-0.5 rounded-sm uppercase">
+          <span className="font-mono text-[9px] tracking-[0.15em] text-white bg-white/3 border border-white/10 px-2.5 py-0.5 rounded-sm uppercase">
             {item.highlight}
           </span>
         )}

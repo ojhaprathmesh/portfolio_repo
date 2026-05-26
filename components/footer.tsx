@@ -23,7 +23,7 @@ export function Footer() {
   }, [])
 
   return (
-    <footer className="bg-[#050505] border-t border-white/[0.04] py-8 select-none">
+    <footer className="bg-[#050505] border-t border-white/4 py-8 select-none">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Local Time */}

@@ -97,12 +97,12 @@ export function HeroAboutScroll() {
             className="flex flex-row w-[200vw] h-full will-change-transform"
           >
             {/* Slide 1: Hero Section (Left side) */}
-            <div className="w-[100vw] h-full">
+            <div className="w-screen h-full">
               <Hero />
             </div>
 
             {/* Slide 2: About Section (Right side) — scrollable within viewport */}
-            <div className="w-[100vw] h-full overflow-y-auto overflow-x-hidden overscroll-y-contain scroll-smooth">
+            <div className="w-screen h-full overflow-y-auto overflow-x-hidden overscroll-y-contain scroll-smooth">
               <About />
             </div>
           </motion.div>

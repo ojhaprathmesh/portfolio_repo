@@ -61,7 +61,7 @@ export function CustomCursor() {
     <>
       {/* Main cursor dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-white rounded-full pointer-events-none z-[10000] mix-blend-difference"
+        className="fixed top-0 left-0 w-3 h-3 bg-white rounded-full pointer-events-none z-10000 mix-blend-difference"
         style={{
           x: dotX,
           y: dotY,
@@ -76,7 +76,7 @@ export function CustomCursor() {
       />
       {/* Hover ring */}
       <motion.div
-        className="fixed top-0 left-0 w-12 h-12 border border-white rounded-full pointer-events-none z-[10000] mix-blend-difference"
+        className="fixed top-0 left-0 w-12 h-12 border border-white rounded-full pointer-events-none z-10000 mix-blend-difference"
         style={{
           x: ringX,
           y: ringY,

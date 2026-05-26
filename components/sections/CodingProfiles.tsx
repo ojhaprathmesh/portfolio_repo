@@ -30,7 +30,7 @@ export default function CodingProfiles() {
   return (
     <section
       id="coding"
-      className="py-24 md:py-36 bg-[#050505] border-t border-white/[0.02]"
+      className="py-24 md:py-36 bg-[#050505] border-t border-white/2"
     >
       <div className="max-w-5xl mx-auto px-6 md:px-12">
         <AnimatedSection>

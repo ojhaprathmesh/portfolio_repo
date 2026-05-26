@@ -26,15 +26,15 @@ export function ContributionHeatmap({ weeks }: ContributionHeatmapProps) {
 
   if (!weeks.length) {
     return (
-      <div className="p-6 bg-[#0d0d0d] border border-white/[0.04] rounded-sm text-center font-mono text-[10px] text-white/30">
+      <div className="p-6 bg-[#0d0d0d] border border-white/4 rounded-sm text-center font-mono text-[10px] text-white/30">
         Contribution graph unavailable
       </div>
     )
   }
 
   return (
-    <div className="p-5 md:p-6 bg-[#0d0d0d] border border-white/[0.04] rounded-sm">
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4 min-h-[40px]">
+    <div className="p-5 md:p-6 bg-[#0d0d0d] border border-white/4 rounded-sm">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4 min-h-10">
         <div>
           <span className="font-mono text-[9px] tracking-[0.25em] text-white/50 uppercase block">
             Contribution Activity
@@ -49,7 +49,7 @@ export function ContributionHeatmap({ weeks }: ContributionHeatmapProps) {
       </div>
 
       <div
-        className="w-full grid gap-[3px]"
+        className="w-full grid gap-0.75"
         style={{
           gridTemplateColumns: `repeat(${HEATMAP_SIZE.cols}, minmax(0, 1fr))`,
           gridTemplateRows: `repeat(${HEATMAP_SIZE.rows}, minmax(0, 1fr))`,
@@ -65,8 +65,8 @@ export function ContributionHeatmap({ weeks }: ContributionHeatmapProps) {
               <button
                 key={`${col}-${row}-${day.date}`}
                 type="button"
-                className={`aspect-square w-full min-h-[8px] rounded-[2px] border transition-[box-shadow,background-color] hover:ring-1 hover:ring-sky-400/60 focus:outline-none focus:ring-1 focus:ring-sky-400/60 ${
-                  isToday ? "border-sky-400/40" : "border-white/[0.03]"
+                className={`aspect-square w-full min-h-2 rounded-[2px] border transition-[box-shadow,background-color] hover:ring-1 hover:ring-sky-400/60 focus:outline-none focus:ring-1 focus:ring-sky-400/60 ${
+                  isToday ? "border-sky-400/40" : "border-white/3"
                 }`}
                 style={{
                   gridColumn: col + 1,
@@ -97,7 +97,7 @@ export function ContributionHeatmap({ weeks }: ContributionHeatmapProps) {
           {[0.08, 0.35, 0.55, 0.75, 1].map((o) => (
             <span
               key={o}
-              className="w-[11px] h-[11px] rounded-[2px]"
+              className="w-2.75 h-2.75 rounded-[2px]"
               style={{ backgroundColor: `rgba(88, 166, 255, ${o})` }}
             />
           ))}
