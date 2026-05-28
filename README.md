@@ -3,12 +3,9 @@
 <div align="center">
 
 [![CI](https://github.com/ojhaprathmesh/portfolio_repo/actions/workflows/ci.yml/badge.svg)](https://github.com/ojhaprathmesh/portfolio_repo/actions/workflows/ci.yml)
-[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=flat-square&logo=vercel)](https://ojhaprathmesh.in)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/ojhaprathmesh/portfolio_repo?style=flat-square&color=blue)](https://github.com/ojhaprathmesh/portfolio_repo/commits)
-[![Repo Size](https://img.shields.io/github/repo-size/ojhaprathmesh/portfolio_repo?style=flat-square&color=purple)](https://github.com/ojhaprathmesh/portfolio_repo)
-
-<br/>
+[![Security Audit](https://github.com/ojhaprathmesh/portfolio_repo/actions/workflows/security.yml/badge.svg)](https://github.com/ojhaprathmesh/portfolio_repo/actions/workflows/security.yml)
+[![CodeQL](https://github.com/ojhaprathmesh/portfolio_repo/actions/workflows/codeql.yml/badge.svg)](https://github.com/ojhaprathmesh/portfolio_repo/actions/workflows/codeql.yml)
+[![Lighthouse](https://github.com/ojhaprathmesh/portfolio_repo/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/ojhaprathmesh/portfolio_repo/actions/workflows/lighthouse.yml)
 
 [![Next.js](https://img.shields.io/badge/Frontend-Next.js-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/Language-TypeScript-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
@@ -122,67 +119,24 @@ pnpm start
 
 ---
 
-## ✅ CI Pipeline
+## ✅ Quality, Security & Performance Workflows
 
-This repository uses GitHub Actions for basic quality checks.
+This repository uses GitHub Actions for automated checks.
 
-The CI workflow should run:
+| Workflow | Purpose |
+|---|---|
+| CI | Runs lint and production build checks |
+| Security Audit | Checks dependency vulnerabilities using `pnpm audit` |
+| CodeQL | Performs static security analysis |
+| Lighthouse | Runs performance checks against the deployed site |
 
-```bash
-pnpm install
-pnpm lint
-pnpm build
-```
-
-Recommended workflow path:
+Workflow files:
 
 ```txt
 .github/workflows/ci.yml
-```
-
-Recommended workflow:
-
-```yml
-name: CI
-
-on:
-  push:
-    branches:
-      - main
-      - master
-  pull_request:
-    branches:
-      - main
-      - master
-
-jobs:
-  build:
-    name: Lint and Build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Run lint
-        run: pnpm lint
-
-      - name: Build project
-        run: pnpm build
+.github/workflows/security.yml
+.github/workflows/codeql.yml
+.github/workflows/lighthouse.yml
 ```
 
 ---
@@ -245,14 +199,13 @@ This keeps UI components reusable and prevents content from being scattered acro
 
 ## 🚧 Current Improvement Roadmap
 
-- Add CI/CD workflow
-- Add missing public assets like resume PDF and OG image
-- Remove unused dependencies
-- Re-enable strict production build checks
-- Add security headers
-- Add performance monitoring
 - Add project detail pages
 - Add blog or engineering notes section
+- Add security headers
+- Add OG preview image
+- Add resume PDF preview
+- Add stricter performance budgets
+- Add visual regression testing later
 
 ---
 
