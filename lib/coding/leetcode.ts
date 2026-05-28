@@ -1,6 +1,6 @@
-import { CODING_USERNAME, type LeetCodeLiveStats } from "./types"
+import { type LeetCodeLiveStats, USERNAME } from "./types";
 
-const LEETCODE_URL = `https://leetcode.com/${CODING_USERNAME}`
+const LEETCODE_URL = `https://leetcode.com/${USERNAME}`;
 
 const PROFILE_QUERY = `
   query getUserProfile($username: String!) {
@@ -23,37 +23,37 @@ const PROFILE_QUERY = `
       }
     }
   }
-`
+`;
 
 interface SubmissionCount {
-  difficulty: string
-  count: number
+  difficulty: string;
+  count: number;
 }
 
 interface LeetCodeGraphQLResponse {
   data?: {
     matchedUser?: {
       submitStats?: {
-        acSubmissionNum?: SubmissionCount[]
-      }
+        acSubmissionNum?: SubmissionCount[];
+      };
       profile?: {
-        ranking?: number
-        reputation?: number
-      }
-    }
+        ranking?: number;
+        reputation?: number;
+      };
+    };
     userContestRanking?: {
-      rating?: number
-      badge?: { name?: string } | null
-    } | null
-  }
-  errors?: { message: string }[]
+      rating?: number;
+      badge?: { name?: string } | null;
+    } | null;
+  };
+  errors?: { message: string }[];
 }
 
 function countByDifficulty(
   submissions: SubmissionCount[],
   difficulty: string,
 ): number {
-  return submissions.find((s) => s.difficulty === difficulty)?.count ?? 0
+  return submissions.find((s) => s.difficulty === difficulty)?.count ?? 0;
 }
 
 export async function fetchLeetCodeStats(): Promise<LeetCodeLiveStats | null> {
@@ -67,22 +67,22 @@ export async function fetchLeetCodeStats(): Promise<LeetCodeLiveStats | null> {
       },
       body: JSON.stringify({
         query: PROFILE_QUERY,
-        variables: { username: CODING_USERNAME },
+        variables: { username: USERNAME },
       }),
       next: { revalidate: 3600 },
-    })
+    });
 
-    if (!res.ok) return null
+    if (!res.ok) return null;
 
-    const json = (await res.json()) as LeetCodeGraphQLResponse
-    if (json.errors?.length || !json.data?.matchedUser) return null
+    const json = (await res.json()) as LeetCodeGraphQLResponse;
+    if (json.errors?.length || !json.data?.matchedUser) return null;
 
     const submissions =
-      json.data.matchedUser.submitStats?.acSubmissionNum ?? []
-    const contest = json.data.userContestRanking
+      json.data.matchedUser.submitStats?.acSubmissionNum ?? [];
+    const contest = json.data.userContestRanking;
 
     return {
-      username: CODING_USERNAME,
+      username: USERNAME,
       url: LEETCODE_URL,
       totalSolved: countByDifficulty(submissions, "All"),
       easy: countByDifficulty(submissions, "Easy"),
@@ -92,8 +92,8 @@ export async function fetchLeetCodeStats(): Promise<LeetCodeLiveStats | null> {
       contestRating: contest?.rating ?? null,
       contestBadge: contest?.badge?.name ?? null,
       fetchedAt: new Date().toISOString(),
-    }
+    };
   } catch {
-    return null
+    return null;
   }
 }
