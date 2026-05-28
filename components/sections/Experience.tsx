@@ -1,15 +1,18 @@
 // filepath: components/sections/Experience.tsx
-"use client"
+"use client";
 
-import { TimelineItem } from "@/components/cards/TimelineItem"
-import { AnimatedSection } from "@/components/common/AnimatedSection"
-import { SectionHeading } from "@/components/common/SectionHeading"
-import { experience } from "@/data"
+import { TimelineItem } from "@/components/cards/TimelineItem";
+import { AnimatedSection } from "@/components/common/AnimatedSection";
+import { SectionHeading } from "@/components/common/SectionHeading";
+import { experience } from "@/data";
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 md:py-36 bg-[#050505] border-t border-white/2">
-      <div className="max-w-4xl mx-auto px-6 md:px-12">
+    <section
+      id="experience"
+      className="bg-background border-t border-white/2 py-24 md:py-36"
+    >
+      <div className="mx-auto max-w-4xl px-6 md:px-12">
         <AnimatedSection>
           <SectionHeading
             number="02"
@@ -27,5 +30,5 @@ export default function Experience() {
         </div>
       </div>
     </section>
-  )
+  );
 }

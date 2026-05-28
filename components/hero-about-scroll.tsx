@@ -1,117 +1,120 @@
-"use client"
+"use client";
 
-import { motion, useMotionValue } from "framer-motion"
-import { useLenis } from "lenis/react"
-import { useEffect, useRef, useState } from "react"
+import { motion, useMotionValue } from "framer-motion";
+import { useLenis } from "lenis/react";
+import { useEffect, useRef, useState } from "react";
 
-import { About } from "./about"
-import { Hero } from "./hero"
+import { About } from "./about";
+import { Hero } from "./hero";
 
 // Helper to calculate the true layout offset top of an element relative to the document root
 // This is unaffected by sticky positions, scroll states, or parent transforms.
 const getAbsoluteOffsetTop = (element: HTMLElement) => {
-  let offsetTop = 0
-  let el: HTMLElement | null = element
+  let offsetTop = 0;
+  let el: HTMLElement | null = element;
   while (el) {
-    offsetTop += el.offsetTop
-    el = el.offsetParent as HTMLElement | null
+    offsetTop += el.offsetTop;
+    el = el.offsetParent as HTMLElement | null;
   }
-  return offsetTop
-}
+  return offsetTop;
+};
 
 export function HeroAboutScroll() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [mounted, setMounted] = useState(false)
-  const x = useMotionValue("0%")
-  const lenis = useLenis()
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+  const x = useMotionValue("0%");
+  const lenis = useLenis();
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
-    if (!mounted) return
+    if (!mounted) return;
 
-    let snapTimeout: NodeJS.Timeout | null = null
+    let snapTimeout: NodeJS.Timeout | null = null;
 
     const handleScroll = () => {
-      if (!containerRef.current) return
+      if (!containerRef.current) return;
 
       // Calculate absolute scroll coordinates
-      const offsetTop = getAbsoluteOffsetTop(containerRef.current)
-      const scrollTop = window.scrollY || document.documentElement.scrollTop
-      const sectionHeight = containerRef.current.offsetHeight
-      const viewportHeight = window.innerHeight
-      const scrollDistance = sectionHeight - viewportHeight
+      const offsetTop = getAbsoluteOffsetTop(containerRef.current);
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const sectionHeight = containerRef.current.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const scrollDistance = sectionHeight - viewportHeight;
 
-      if (scrollDistance <= 0) return
+      if (scrollDistance <= 0) return;
 
       // Calculate progress (0 to 1) of scrolling inside this container
-      const currentProgress = Math.max(0, Math.min(1, (scrollTop - offsetTop) / scrollDistance))
-      
+      const currentProgress = Math.max(
+        0,
+        Math.min(1, (scrollTop - offsetTop) / scrollDistance),
+      );
+
       // Map progress to translation (0% to -50%)
-      x.set(`${-50 * currentProgress}%`)
+      x.set(`${-50 * currentProgress}%`);
 
       // Clear any pending snaps
       if (snapTimeout) {
-        clearTimeout(snapTimeout)
+        clearTimeout(snapTimeout);
       }
 
       // Trigger snapping only if the scroll rests inside the active transition range
       if (currentProgress > 0.01 && currentProgress < 0.99) {
         snapTimeout = setTimeout(() => {
-          const targetProgress = currentProgress < 0.5 ? 0 : 1
-          const targetScrollTop = offsetTop + targetProgress * scrollDistance
+          const targetProgress = currentProgress < 0.5 ? 0 : 1;
+          const targetScrollTop = offsetTop + targetProgress * scrollDistance;
 
           if (lenis) {
-            lenis.scrollTo(targetScrollTop, { duration: 0.3 })
+            lenis.scrollTo(targetScrollTop, { duration: 0.3 });
           } else {
             window.scrollTo({
               top: targetScrollTop,
               behavior: "smooth",
-            })
+            });
           }
-        }, 100) // Snap 100ms after user finishes scrolling
+        }, 100); // Snap 100ms after user finishes scrolling
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    handleScroll() // Initialize on mount
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initialize on mount
 
     return () => {
-      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("scroll", handleScroll);
       if (snapTimeout) {
-        clearTimeout(snapTimeout)
+        clearTimeout(snapTimeout);
       }
-    }
-  }, [mounted, x, lenis])
+    };
+  }, [mounted, x, lenis]);
 
   return (
-    <div ref={containerRef} className="relative h-[200vh] bg-[#050505]">
+    <div ref={containerRef} className="bg-background relative h-[200vh]">
       {/* Sticky viewport frame */}
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {mounted ? (
           /* Horizontal scroll track */
           <motion.div
             style={{ x }}
-            className="flex flex-row w-[200vw] h-full will-change-transform"
+            className="flex h-full w-[200vw] flex-row will-change-transform"
           >
             {/* Slide 1: Hero Section (Left side) */}
-            <div className="w-screen h-full">
+            <div className="h-full w-screen">
               <Hero />
             </div>
 
             {/* Slide 2: About Section (Right side) — scrollable within viewport */}
-            <div className="w-screen h-full overflow-y-auto overflow-x-hidden overscroll-y-contain scroll-smooth">
+            <div className="h-full w-screen overflow-x-hidden overflow-y-auto overscroll-y-contain scroll-smooth">
               <About />
             </div>
           </motion.div>
         ) : (
-          <div className="w-full h-full">
+          <div className="h-full w-full">
             <Hero />
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }

@@ -1,30 +1,35 @@
-"use client"
+"use client";
 
-import { useMemo, useState } from "react"
+import { useMemo, useState } from "react";
 
-import type { ContributionDay } from "@/lib/coding/contributions"
+import type { ContributionDay } from "@/lib/coding/contributions";
 import {
   buildContributionGrid,
   getHeatmapDateRange,
   HEATMAP_SIZE,
   levelToOpacity,
-} from "@/lib/coding/contributions"
+} from "@/lib/coding/contributions";
 
 interface EmbeddedContributionHeatmapProps {
-  weeks: ContributionDay[][]
+  weeks: ContributionDay[][];
 }
 
-export function EmbeddedContributionHeatmap({ weeks }: EmbeddedContributionHeatmapProps) {
-  const [tooltip, setTooltip] = useState<{ date: string; count: number } | null>(null)
+export function EmbeddedContributionHeatmap({
+  weeks,
+}: EmbeddedContributionHeatmapProps) {
+  const [tooltip, setTooltip] = useState<{
+    date: string;
+    count: number;
+  } | null>(null);
 
-  const grid = useMemo(() => buildContributionGrid(weeks), [weeks])
-  const range = useMemo(() => getHeatmapDateRange(), [])
+  const grid = useMemo(() => buildContributionGrid(weeks), [weeks]);
+  const range = useMemo(() => getHeatmapDateRange(), []);
 
   const tooltipText = tooltip
     ? `${tooltip.count} on ${tooltip.date}`
-    : "Hover a cell for details"
+    : "Hover a cell for details";
 
-  if (!weeks.length) return null
+  if (!weeks.length) return null;
 
   return (
     <div
@@ -32,22 +37,22 @@ export function EmbeddedContributionHeatmap({ weeks }: EmbeddedContributionHeatm
       onClick={(e) => e.stopPropagation()}
       onKeyDown={(e) => e.stopPropagation()}
     >
-      <div className="flex items-start justify-between gap-2 mb-2 min-h-8">
+      <div className="mb-2 flex min-h-8 items-start justify-between gap-2">
         <div>
-          <span className="font-mono text-[8px] tracking-[0.2em] text-[#5F5F5F] uppercase block">
+          <span className="block font-mono text-[8px] tracking-[0.2em] text-[#5F5F5F] uppercase">
             CONTRIBUTION_ACTIVITY
           </span>
-          <span className="font-mono text-[7px] text-[#5F5F5F]/80 mt-0.5 block tabular-nums">
+          <span className="mt-0.5 block font-mono text-[7px] text-[#5F5F5F]/80 tabular-nums">
             {range.start} → {range.end}
           </span>
         </div>
-        <span className="font-mono text-[8px] text-[#5F5F5F] text-right leading-relaxed max-w-[50%]">
+        <span className="max-w-[50%] text-right font-mono text-[8px] leading-relaxed text-[#5F5F5F]">
           {tooltipText}
         </span>
       </div>
 
       <div
-        className="w-full grid gap-0.5 p-2 border border-white/6 bg-[#080808] rounded-[2px]"
+        className="bg-background grid w-full gap-0.5 rounded-[2px] border border-white/6 p-2"
         style={{
           gridTemplateColumns: `repeat(${HEATMAP_SIZE.cols}, minmax(0, 1fr))`,
           gridTemplateRows: `repeat(${HEATMAP_SIZE.rows}, minmax(0, 1fr))`,
@@ -57,13 +62,17 @@ export function EmbeddedContributionHeatmap({ weeks }: EmbeddedContributionHeatm
       >
         {grid.map((column, col) =>
           column.map((day, row) => {
-            const opacity = levelToOpacity(day.contributionLevel, day.contributionCount)
-            const isToday = col === HEATMAP_SIZE.cols - 1 && row === HEATMAP_SIZE.rows - 1
+            const opacity = levelToOpacity(
+              day.contributionLevel,
+              day.contributionCount,
+            );
+            const isToday =
+              col === HEATMAP_SIZE.cols - 1 && row === HEATMAP_SIZE.rows - 1;
             return (
               <button
                 key={`${col}-${row}-${day.date}`}
                 type="button"
-                className={`aspect-square w-full min-h-1.5 max-h-2.5 rounded-[1px] border transition-[box-shadow,background-color] hover:ring-1 hover:ring-white/30 focus:outline-none focus:ring-1 focus:ring-white/30 ${
+                className={`aspect-square max-h-2.5 min-h-1.5 w-full rounded-[1px] border transition-[box-shadow,background-color] hover:ring-1 hover:ring-white/30 focus:ring-1 focus:ring-white/30 focus:outline-none ${
                   isToday ? "border-white/25" : "border-white/4"
                 }`}
                 style={{
@@ -81,13 +90,13 @@ export function EmbeddedContributionHeatmap({ weeks }: EmbeddedContributionHeatm
                 onBlur={() => setTooltip(null)}
                 aria-label={`${day.contributionCount} contributions on ${day.date}`}
               />
-            )
+            );
           }),
         )}
       </div>
 
-      <div className="flex items-center justify-between mt-2 gap-2">
-        <span className="font-mono text-[7px] text-[#5F5F5F] uppercase tracking-wider">
+      <div className="mt-2 flex items-center justify-between gap-2">
+        <span className="font-mono text-[7px] tracking-wider text-[#5F5F5F] uppercase">
           52×7 · newest bottom-right
         </span>
         <div className="flex items-center gap-1 font-mono text-[7px] text-[#5F5F5F] uppercase">
@@ -95,7 +104,7 @@ export function EmbeddedContributionHeatmap({ weeks }: EmbeddedContributionHeatm
           {[0.08, 0.35, 0.55, 0.75, 1].map((o) => (
             <span
               key={o}
-              className="w-2 h-2 rounded-[1px] border border-white/4"
+              className="h-2 w-2 rounded-[1px] border border-white/4"
               style={{ backgroundColor: `rgba(245, 245, 245, ${o})` }}
             />
           ))}
@@ -103,5 +112,5 @@ export function EmbeddedContributionHeatmap({ weeks }: EmbeddedContributionHeatm
         </div>
       </div>
     </div>
-  )
+  );
 }

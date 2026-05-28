@@ -1,28 +1,28 @@
 // filepath: components/navbar.tsx
-"use client"
+"use client";
 
-import { AnimatePresence,motion } from "framer-motion"
-import { Menu, X } from "lucide-react"
-import { useEffect,useState } from "react"
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
-import { navItems, profile } from "@/data"
+import { navItems, profile } from "@/data";
 
 interface NavbarProps {
-  isVisible?: boolean
+  isVisible?: boolean;
 }
 
 export function Navbar({ isVisible = true }: NavbarProps) {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("")
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40)
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 40);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // IntersectionObserver to set activeSection based on scrolling
   useEffect(() => {
@@ -30,40 +30,46 @@ export function Navbar({ isVisible = true }: NavbarProps) {
       root: null,
       rootMargin: "-25% 0px -55% 0px", // triggers when section occupies the upper-middle of viewport
       threshold: 0,
-    }
+    };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setActiveSection(entry.target.id)
+          setActiveSection(entry.target.id);
         }
-      })
-    }
+      });
+    };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions)
-    
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+
     // Track each section that corresponds to a nav item plus the hero
-    const sections = ["hero", ...navItems.map((item) => item.href.replace("#", ""))]
+    const sections = [
+      "hero",
+      ...navItems.map((item) => item.href.replace("#", "")),
+    ];
     sections.forEach((id) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
 
     return () => {
       sections.forEach((id) => {
-        const el = document.getElementById(id)
-        if (el) observer.unobserve(el)
-      })
-    }
-  }, [])
+        const el = document.getElementById(id);
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
 
   const scrollToSection = (href: string) => {
-    setIsMenuOpen(false)
-    const element = document.querySelector(href)
+    setIsMenuOpen(false);
+    const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <>
@@ -74,19 +80,19 @@ export function Navbar({ isVisible = true }: NavbarProps) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -80, opacity: 0 }}
             transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+            className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
               isScrolled
-                ? "bg-[#050505]/75 backdrop-blur-md border-b border-white/6 py-3.5"
+                ? "bg-background/75 border-b border-white/6 py-3.5 backdrop-blur-md"
                 : "bg-transparent py-6"
             }`}
           >
-            <nav className="flex items-center justify-between px-6 md:px-12 max-w-7xl mx-auto w-full">
+            <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 md:px-12">
               {/* Logo */}
               <a
                 href="#"
                 onClick={(e) => {
-                  e.preventDefault()
-                  window.scrollTo({ top: 0, behavior: "smooth" })
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
                 className="group flex items-center gap-2 select-none"
                 aria-label="Home"
@@ -99,53 +105,107 @@ export function Navbar({ isVisible = true }: NavbarProps) {
                   xmlns="http://www.w3.org/2000/svg"
                   className="transition-transform duration-300 group-hover:scale-105"
                 >
-                  <path d="M328 252H720L624 348H424V770L328 866V252Z" fill="url(#navWhiteFace)" />
-                  <path d="M624 348L720 252V538L624 634V348Z" fill="url(#navSilverFace)" />
-                  <path d="M424 538H624V634H520L424 538Z" fill="url(#navSilverLower)" />
+                  <path
+                    d="M328 252H720L624 348H424V770L328 866V252Z"
+                    fill="url(#navWhiteFace)"
+                  />
+                  <path
+                    d="M624 348L720 252V538L624 634V348Z"
+                    fill="url(#navSilverFace)"
+                  />
+                  <path
+                    d="M424 538H624V634H520L424 538Z"
+                    fill="url(#navSilverLower)"
+                  />
                   <path d="M424 348H624V538H424V348Z" fill="#050505" />
-                  <path d="M424 538L520 634L424 730V538Z" fill="url(#navDarkFold)" />
-                  <path d="M328 866L424 770V730L328 826V866Z" fill="url(#navWhiteLeg)" />
-                  
+                  <path
+                    d="M424 538L520 634L424 730V538Z"
+                    fill="url(#navDarkFold)"
+                  />
+                  <path
+                    d="M328 866L424 770V730L328 826V866Z"
+                    fill="url(#navWhiteLeg)"
+                  />
+
                   <defs>
-                    <linearGradient id="navWhiteFace" x1="328" y1="252" x2="672" y2="786" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="#FFFFFF"/>
-                      <stop offset="1" stopColor="#EDEDED"/>
+                    <linearGradient
+                      id="navWhiteFace"
+                      x1="328"
+                      y1="252"
+                      x2="672"
+                      y2="786"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stopColor="#FFFFFF" />
+                      <stop offset="1" stopColor="#EDEDED" />
                     </linearGradient>
-                    <linearGradient id="navWhiteLeg" x1="328" y1="730" x2="424" y2="866" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="#FFFFFF"/>
-                      <stop offset="1" stopColor="#EDEDED"/>
+                    <linearGradient
+                      id="navWhiteLeg"
+                      x1="328"
+                      y1="730"
+                      x2="424"
+                      y2="866"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stopColor="#FFFFFF" />
+                      <stop offset="1" stopColor="#EDEDED" />
                     </linearGradient>
-                    <linearGradient id="navSilverFace" x1="624" y1="252" x2="720" y2="634" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="#E5E5E5"/>
-                      <stop offset="1" stopColor="#999999"/>
+                    <linearGradient
+                      id="navSilverFace"
+                      x1="624"
+                      y1="252"
+                      x2="720"
+                      y2="634"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stopColor="#E5E5E5" />
+                      <stop offset="1" stopColor="#999999" />
                     </linearGradient>
-                    <linearGradient id="navSilverLower" x1="424" y1="538" x2="624" y2="634" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="#B5B5B5"/>
-                      <stop offset="1" stopColor="#7F7F7F"/>
+                    <linearGradient
+                      id="navSilverLower"
+                      x1="424"
+                      y1="538"
+                      x2="624"
+                      y2="634"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stopColor="#B5B5B5" />
+                      <stop offset="1" stopColor="#7F7F7F" />
                     </linearGradient>
-                    <linearGradient id="navDarkFold" x1="424" y1="538" x2="520" y2="730" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="#333333"/>
-                      <stop offset="1" stopColor="#111111"/>
+                    <linearGradient
+                      id="navDarkFold"
+                      x1="424"
+                      y1="538"
+                      x2="520"
+                      y2="730"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stopColor="#333333" />
+                      <stop offset="1" stopColor="#111111" />
                     </linearGradient>
                   </defs>
                 </svg>
               </a>
 
               {/* Desktop Navigation Links */}
-              <ul className="hidden xl:flex items-center gap-7">
+              <ul className="hidden items-center gap-7 xl:flex">
                 {navItems.map((item) => {
-                  const isActive = activeSection === item.href.replace("#", "")
+                  const isActive = activeSection === item.href.replace("#", "");
                   return (
                     <li key={item.label}>
                       <button
                         onClick={() => scrollToSection(item.href)}
                         className={`group relative font-mono text-[10px] tracking-[0.18em] uppercase transition-colors duration-300 ${
-                          isActive ? "text-white font-medium" : "text-white/45 hover:text-white"
+                          isActive
+                            ? "font-medium text-white"
+                            : "text-white/45 hover:text-white"
                         }`}
                       >
-                        <span className="text-white/40 mr-1.5 opacity-90">{item.index}</span>
+                        <span className="mr-1.5 text-white/40 opacity-90">
+                          {item.index}
+                        </span>
                         {item.label}
-                        
+
                         {/* Dynamic underline */}
                         <span
                           className={`absolute -bottom-1.5 left-0 h-px bg-white transition-all duration-300 ${
@@ -154,15 +214,15 @@ export function Navbar({ isVisible = true }: NavbarProps) {
                         />
                       </button>
                     </li>
-                  )
+                  );
                 })}
               </ul>
 
               {/* Status Indicator */}
-              <div className="hidden lg:flex items-center gap-3">
+              <div className="hidden items-center gap-3 lg:flex">
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white/70" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-40" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white/70" />
                 </span>
                 <span className="font-mono text-[9px] tracking-[0.2em] text-white/45 uppercase select-none">
                   {profile.availability}
@@ -172,10 +232,14 @@ export function Navbar({ isVisible = true }: NavbarProps) {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="xl:hidden text-white/65 hover:text-white transition-colors p-1"
+                className="p-1 text-white/65 transition-colors hover:text-white xl:hidden"
                 aria-label="Toggle navigation menu"
               >
-                {isMenuOpen ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
+                {isMenuOpen ? (
+                  <X size={18} strokeWidth={1.5} />
+                ) : (
+                  <Menu size={18} strokeWidth={1.5} />
+                )}
               </button>
             </nav>
           </motion.header>
@@ -190,11 +254,11 @@ export function Navbar({ isVisible = true }: NavbarProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#050505]/98 backdrop-blur-xl xl:hidden flex flex-col justify-center"
+            className="bg-background/98 fixed inset-0 z-40 flex flex-col justify-center backdrop-blur-xl xl:hidden"
           >
-            <nav className="flex flex-col items-center justify-center gap-8 py-12 px-6">
+            <nav className="flex flex-col items-center justify-center gap-8 px-6 py-12">
               {navItems.map((item, index) => {
-                const isActive = activeSection === item.href.replace("#", "")
+                const isActive = activeSection === item.href.replace("#", "");
                 return (
                   <motion.button
                     key={item.label}
@@ -205,10 +269,14 @@ export function Navbar({ isVisible = true }: NavbarProps) {
                     onClick={() => scrollToSection(item.href)}
                     className="group flex flex-col items-center gap-1.5"
                   >
-                    <span className="font-mono text-xs text-white/40 tracking-[0.25em]">{item.index}</span>
+                    <span className="font-mono text-xs tracking-[0.25em] text-white/40">
+                      {item.index}
+                    </span>
                     <span
                       className={`text-2xl font-light tracking-widest uppercase transition-colors ${
-                        isActive ? "text-white" : "text-white/50 group-hover:text-white"
+                        isActive
+                          ? "text-white"
+                          : "text-white/50 group-hover:text-white"
                       }`}
                     >
                       {item.label}
@@ -221,11 +289,11 @@ export function Navbar({ isVisible = true }: NavbarProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
-                className="flex items-center gap-2.5 mt-8 border border-white/6 px-4 py-2 rounded-full bg-white/2"
+                className="mt-8 flex items-center gap-2.5 rounded-full border border-white/6 bg-white/2 px-4 py-2"
               >
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white/70" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-40" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white/70" />
                 </span>
                 <span className="font-mono text-[9px] tracking-[0.18em] text-white/50 uppercase">
                   {profile.availability}
@@ -236,5 +304,5 @@ export function Navbar({ isVisible = true }: NavbarProps) {
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }

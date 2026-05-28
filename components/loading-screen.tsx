@@ -553,16 +553,15 @@ export function LoadingScreen({
   const [phase, setPhase] = useState<"loading" | "rippling" | "revealed">(
     "loading",
   );
-  const hasPlayedRef = useRef(false);
   const [rippleKey, setRippleKey] = useState(0);
 
   const shouldReduceMotion = useReducedMotion() ?? false;
 
+  const onStartTransitionRef = useRef(onStartTransition);
+  onStartTransitionRef.current = onStartTransition;
+
   // Progress animation
   useEffect(() => {
-    if (hasPlayedRef.current) return;
-    hasPlayedRef.current = true;
-
     const duration = shouldReduceMotion ? 1200 : 2200;
     const interval = 16;
     const steps = Math.floor(duration / interval);
@@ -574,6 +573,7 @@ export function LoadingScreen({
       const eased =
         t < 0.75 ? (t / 0.75) * 0.88 : 0.88 + ((t - 0.75) / 0.25) * 0.12;
       const next = Math.min(eased * 100 + Math.random() * 1.1, 100);
+
       setProgress(next);
 
       if (step >= steps) {
@@ -582,12 +582,14 @@ export function LoadingScreen({
         // Trigger the ripple transition
         setRippleKey((k) => k + 1);
         setPhase("rippling");
-        onStartTransition?.();
+        onStartTransitionRef.current?.();
       }
     }, interval);
 
-    return () => clearInterval(timer);
-  }, [onStartTransition, shouldReduceMotion]);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   const handleRippleComplete = () => {
     setPhase("revealed");
@@ -646,7 +648,7 @@ export function LoadingScreen({
         {isLoaderVisible && (
           <motion.div
             key="loader-overlay"
-            className="pointer-events-none fixed inset-0 z-90 overflow-hidden bg-[#050505]"
+            className="pointer-events-auto fixed inset-0 z-90 overflow-hidden bg-[#050505]"
             aria-label="Loading portfolio"
             aria-live="polite"
             initial={{ opacity: 1 }}

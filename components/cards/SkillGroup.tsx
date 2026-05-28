@@ -1,21 +1,21 @@
 // filepath: components/cards/SkillGroup.tsx
-"use client"
+"use client";
 
-import type { SkillGroup as SkillGroupType } from "@/types"
+import type { SkillGroup as SkillGroupType } from "@/types";
 
 interface SkillGroupProps {
-  group: SkillGroupType
+  group: SkillGroupType;
 }
 
 export function SkillGroup({ group }: SkillGroupProps) {
   return (
-    <div className="bg-[#0d0d0d] border border-white/4 p-6 rounded-sm flex flex-col h-full hover:border-white/8 transition-colors duration-300">
+    <div className="bg-elevated flex h-full flex-col rounded-sm border border-white/4 p-6 transition-colors duration-300 hover:border-white/8">
       {/* Category header */}
       <div className="mb-5 select-none">
-        <span className="font-mono text-[9px] tracking-[0.25em] text-white/40 uppercase block mb-1">
+        <span className="mb-1 block font-mono text-[9px] tracking-[0.25em] text-white/40 uppercase">
           {group.category}
         </span>
-        <h3 className="text-lg font-light text-white uppercase tracking-wider">
+        <h3 className="text-lg font-light tracking-wider text-white uppercase">
           {group.label}
         </h3>
       </div>
@@ -25,26 +25,29 @@ export function SkillGroup({ group }: SkillGroupProps) {
         {group.skills.map((skill) => (
           <div
             key={skill.name}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-sm bg-white/2 border border-white/4 transition-colors hover:bg-white/4"
+            className="flex items-center gap-2 rounded-sm border border-white/4 bg-white/2 px-3 py-1.5 transition-colors hover:bg-white/4"
           >
             {/* Status dot representation */}
             <span
-              className="w-1.5 h-1.5 rounded-full"
+              className="h-1.5 w-1.5 rounded-full"
               style={{
                 backgroundColor:
                   skill.level === "confident"
-                    ? "#FFFFFF"
+                    ? "var(--primary)"
                     : skill.level === "proficient"
-                    ? "#A7A7A7"
-                    : "transparent",
-                border: skill.level === "learning" ? "1px dashed rgba(255,255,255,0.4)" : "none",
+                      ? "var(--muted-foreground)"
+                      : "transparent",
+                border:
+                  skill.level === "learning"
+                    ? "1px dashed rgba(255,255,255,0.4)"
+                    : "none",
               }}
               title={
                 skill.level === "confident"
                   ? "Confident"
                   : skill.level === "proficient"
-                  ? "Proficient"
-                  : "Currently Learning"
+                    ? "Proficient"
+                    : "Currently Learning"
               }
             />
             <span className="font-mono text-xs text-white/70 select-none">
@@ -54,5 +57,5 @@ export function SkillGroup({ group }: SkillGroupProps) {
         ))}
       </div>
     </div>
-  )
+  );
 }

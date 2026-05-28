@@ -54,7 +54,7 @@ export function LeetCodePanel({ stats }: LeetCodePanelProps) {
       href={stats.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative block h-full cursor-pointer overflow-hidden rounded-sm border border-white/8 bg-[#0B0B0B] p-5 transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] md:p-6"
+      className="group bg-card relative block h-full cursor-pointer overflow-hidden rounded-sm border border-white/8 p-5 transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] md:p-6"
       initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.985 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}

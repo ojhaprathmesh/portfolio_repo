@@ -1,52 +1,51 @@
 // filepath: components/cards/AchievementItem.tsx
-"use client"
+"use client";
 
-import { ExternalLink } from "lucide-react"
+import { ExternalLink } from "lucide-react";
 
-import type { Achievement } from "@/types"
+import type { Achievement } from "@/types";
 
 interface AchievementItemProps {
-  achievement: Achievement
-  index: number
+  achievement: Achievement;
+  index: number;
 }
 
 export function AchievementItem({ achievement, index }: AchievementItemProps) {
-  const itemIndex = (index + 1).toString().padStart(2, "0")
+  const itemIndex = (index + 1).toString().padStart(2, "0");
 
   return (
-    <div className="group relative flex flex-col md:flex-row gap-6 p-6 md:p-8 bg-[#0d0d0d] border border-white/4 rounded-sm hover:border-white/10 transition-all duration-300">
-      
+    <div className="group bg-elevated relative flex flex-col gap-6 rounded-sm border border-white/4 p-6 transition-all duration-300 hover:border-white/10 md:flex-row md:p-8">
       {/* Metric callout on the right/top if exists */}
-      <div className="md:order-last flex flex-col justify-center items-start md:items-end gap-1 min-w-30">
+      <div className="flex min-w-30 flex-col items-start justify-center gap-1 md:order-last md:items-end">
         {achievement.metric ? (
           <>
-            <span className="font-mono text-xl md:text-2xl font-light text-[#00E5FF] tracking-wider">
+            <span className="text-accent-cyan font-mono text-xl font-light tracking-wider md:text-2xl">
               {achievement.metric}
             </span>
             {achievement.metricLabel && (
-              <span className="font-mono text-[9px] tracking-widest uppercase text-white/45">
+              <span className="font-mono text-[9px] tracking-widest text-white/45 uppercase">
                 {achievement.metricLabel}
               </span>
             )}
           </>
         ) : (
-          <span className="font-mono text-[9px] tracking-widest uppercase text-[#3B82F6] font-medium border border-[#3B82F6]/20 px-2 py-0.5 rounded-sm">
+          <span className="text-accent-blue border-accent-blue/20 rounded-sm border px-2 py-0.5 font-mono text-[9px] font-medium tracking-widest uppercase">
             {achievement.type}
           </span>
         )}
       </div>
 
       {/* Main text content */}
-      <div className="flex-1 flex gap-4">
+      <div className="flex flex-1 gap-4">
         {/* Decorative prefix number */}
-        <div className="font-mono text-xs text-white/20 select-none pt-1">
+        <div className="pt-1 font-mono text-xs text-white/20 select-none">
           {itemIndex}
         </div>
 
         <div>
           {/* Header */}
-          <div className="flex items-center gap-2 mb-2 flex-wrap">
-            <h3 className="text-lg font-light text-white group-hover:text-[#00E5FF] transition-colors duration-300">
+          <div className="mb-2 flex flex-wrap items-center gap-2">
+            <h3 className="group-hover:text-accent-cyan text-lg font-light text-white transition-colors duration-300">
               {achievement.title}
             </h3>
             {achievement.link && (
@@ -54,7 +53,7 @@ export function AchievementItem({ achievement, index }: AchievementItemProps) {
                 href={achievement.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/30 hover:text-white transition-colors"
+                className="text-white/30 transition-colors hover:text-white"
                 aria-label={`Verify achievement: ${achievement.title}`}
               >
                 <ExternalLink size={12} />
@@ -63,18 +62,18 @@ export function AchievementItem({ achievement, index }: AchievementItemProps) {
           </div>
 
           {/* Issuer / Date */}
-          <div className="flex items-center gap-3 mb-4 font-mono text-[9px] tracking-[0.2em] text-white/40 uppercase">
+          <div className="mb-4 flex items-center gap-3 font-mono text-[9px] tracking-[0.2em] text-white/40 uppercase">
             <span>{achievement.issuer}</span>
             <span>·</span>
             <span>{achievement.date}</span>
           </div>
 
           {/* Description */}
-          <p className="text-white/60 text-xs font-sans leading-relaxed max-w-2xl">
+          <p className="max-w-2xl font-sans text-xs leading-relaxed text-white/60">
             {achievement.description}
           </p>
         </div>
       </div>
     </div>
-  )
+  );
 }

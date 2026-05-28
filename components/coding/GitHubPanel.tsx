@@ -1,28 +1,36 @@
-"use client"
+"use client";
 
-import { motion, useReducedMotion } from "framer-motion"
-import { ExternalLink } from "lucide-react"
-import { useMemo } from "react"
+import { motion, useReducedMotion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
+import { useMemo } from "react";
 
-import { EmbeddedContributionHeatmap } from "@/components/coding/github-panel/EmbeddedContributionHeatmap"
-import { GithubIcon } from "@/components/icons/lucide-github"
-import { useCountUp } from "@/hooks/use-count-up"
-import type { GitHubLiveStats } from "@/lib/coding/types"
+import { EmbeddedContributionHeatmap } from "@/components/coding/github-panel/EmbeddedContributionHeatmap";
+import { GithubIcon } from "@/components/icons/lucide-github";
+import { useCountUp } from "@/hooks/use-count-up";
+import type { GitHubLiveStats } from "@/lib/coding/types";
 
 interface GitHubPanelProps {
-  stats: GitHubLiveStats
+  stats: GitHubLiveStats;
 }
 
 function CornerBrackets({ className = "" }: { className?: string }) {
-  const c = "absolute w-2.5 h-2.5 border-white/15 pointer-events-none"
+  const c = "absolute w-2.5 h-2.5 border-white/15 pointer-events-none";
   return (
     <>
-      <span className={`${c} top-2.5 left-2.5 border-l border-t ${className}`} />
-      <span className={`${c} top-2.5 right-2.5 border-r border-t ${className}`} />
-      <span className={`${c} bottom-2.5 left-2.5 border-l border-b ${className}`} />
-      <span className={`${c} bottom-2.5 right-2.5 border-r border-b ${className}`} />
+      <span
+        className={`${c} top-2.5 left-2.5 border-t border-l ${className}`}
+      />
+      <span
+        className={`${c} top-2.5 right-2.5 border-t border-r ${className}`}
+      />
+      <span
+        className={`${c} bottom-2.5 left-2.5 border-b border-l ${className}`}
+      />
+      <span
+        className={`${c} right-2.5 bottom-2.5 border-r border-b ${className}`}
+      />
     </>
-  )
+  );
 }
 
 function MetricCell({
@@ -31,52 +39,55 @@ function MetricCell({
   sub,
   delay = 0,
 }: {
-  label: string
-  value: string | number
-  sub?: string
-  delay?: number
+  label: string;
+  value: string | number;
+  sub?: string;
+  delay?: number;
 }) {
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useReducedMotion();
   return (
     <motion.div
-      className="relative px-3 py-2.5 border border-white/6 bg-[#080808]/80"
+      className="bg-background/80 relative border border-white/6 px-3 py-2.5"
       initial={reduceMotion ? false : { opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
     >
-      <span className="block font-mono text-[7px] tracking-[0.22em] text-[#5F5F5F] uppercase mb-1">
+      <span className="mb-1 block font-mono text-[7px] tracking-[0.22em] text-[#5F5F5F] uppercase">
         {label}
       </span>
-      <span className="block font-mono text-lg font-light text-[#F5F5F5] tabular-nums leading-none">
+      <span className="block font-mono text-lg leading-none font-light text-[#F5F5F5] tabular-nums">
         {value}
       </span>
       {sub && (
-        <span className="block font-mono text-[8px] text-[#5F5F5F] mt-1">{sub}</span>
+        <span className="mt-1 block font-mono text-[8px] text-[#5F5F5F]">
+          {sub}
+        </span>
       )}
     </motion.div>
-  )
+  );
 }
 
 export function GitHubPanel({ stats }: GitHubPanelProps) {
-  const reduceMotion = useReducedMotion()
-  const contributions = stats.totalContributions
-  const animatedCount = useCountUp(contributions, 2000, !reduceMotion)
+  const reduceMotion = useReducedMotion();
+  const contributions = stats.totalContributions;
+  const animatedCount = useCountUp(contributions, 2000, !reduceMotion);
 
   const syncedLabel = useMemo(() => {
     try {
       return new Date(stats.fetchedAt).toLocaleString("en-IN", {
         dateStyle: "medium",
         timeStyle: "short",
-      })
+      });
     } catch {
-      return null
+      return null;
     }
-  }, [stats.fetchedAt])
+  }, [stats.fetchedAt]);
 
   const displayCount =
-    contributions == null ? "—" : reduceMotion ? contributions : animatedCount
+    contributions == null ? "—" : reduceMotion ? contributions : animatedCount;
 
-  const openProfile = () => window.open(stats.url, "_blank", "noopener,noreferrer")
+  const openProfile = () =>
+    window.open(stats.url, "_blank", "noopener,noreferrer");
 
   return (
     <motion.div
@@ -85,34 +96,37 @@ export function GitHubPanel({ stats }: GitHubPanelProps) {
       onClick={openProfile}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault()
-          openProfile()
+          e.preventDefault();
+          openProfile();
         }
       }}
-      className="group relative block h-full cursor-pointer overflow-hidden rounded-sm border border-white/8 bg-[#0B0B0B] p-5 md:p-6 transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)]"
+      className="group bg-card relative block h-full cursor-pointer overflow-hidden rounded-sm border border-white/8 p-5 transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] md:p-6"
       initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.985 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
     >
-      <CornerBrackets className="group-hover:border-white/25 transition-colors duration-500" />
+      <CornerBrackets className="transition-colors duration-500 group-hover:border-white/25" />
 
       {/* header */}
-      <div className="relative flex items-start justify-between gap-4 mb-5">
+      <div className="relative mb-5 flex items-start justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <GithubIcon size={13} className="text-[#A7A7A7] group-hover:text-[#F5F5F5] transition-colors duration-500" />
+          <div className="mb-1 flex items-center gap-2">
+            <GithubIcon
+              size={13}
+              className="text-[#A7A7A7] transition-colors duration-500 group-hover:text-[#F5F5F5]"
+            />
             <span className="font-mono text-[9px] tracking-[0.28em] text-[#A7A7A7] uppercase">
               GitHub
             </span>
           </div>
-          <span className="font-mono text-[8px] tracking-[0.18em] text-[#5F5F5F] uppercase block">
+          <span className="block font-mono text-[8px] tracking-[0.18em] text-[#5F5F5F] uppercase">
             REPO_SIGNAL · SOURCE.ACTIVITY
           </span>
         </div>
 
-        <div className="text-right shrink-0">
-          <div className="flex items-center justify-end gap-2 mb-1">
-            <span className="flex items-center gap-1.5 font-mono text-[8px] tracking-widest uppercase text-[#A7A7A7]">
+        <div className="shrink-0 text-right">
+          <div className="mb-1 flex items-center justify-end gap-2">
+            <span className="flex items-center gap-1.5 font-mono text-[8px] tracking-widest text-[#A7A7A7] uppercase">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/30 opacity-60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white/70" />
@@ -121,28 +135,28 @@ export function GitHubPanel({ stats }: GitHubPanelProps) {
             </span>
             <ExternalLink
               size={11}
-              className="text-[#5F5F5F] group-hover:text-[#F5F5F5] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-500"
+              className="text-[#5F5F5F] transition-all duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#F5F5F5]"
             />
           </div>
-          <span className="font-mono text-[8px] text-[#5F5F5F] tabular-nums opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <span className="font-mono text-[8px] text-[#5F5F5F] tabular-nums opacity-0 transition-opacity duration-500 group-hover:opacity-100">
             X:051 Y:007
           </span>
         </div>
       </div>
 
-      <div className="relative font-mono text-xs text-[#A7A7A7] mb-5">
+      <div className="relative mb-5 font-mono text-xs text-[#A7A7A7]">
         @{stats.username}
       </div>
 
       {/* primary readout */}
-      <div className="relative mb-6 pb-6 border-b border-white/6">
-        <span className="font-mono text-[8px] tracking-[0.22em] text-[#5F5F5F] uppercase block mb-3">
+      <div className="relative mb-6 border-b border-white/6 pb-6">
+        <span className="mb-3 block font-mono text-[8px] tracking-[0.22em] text-[#5F5F5F] uppercase">
           SOURCE.ACTIVITY
         </span>
 
         <div className="flex items-end gap-4">
           <motion.span
-            className="font-mono text-[3.25rem] md:text-[3.75rem] font-extralight text-[#F5F5F5] tabular-nums leading-none tracking-tight"
+            className="font-mono text-[3.25rem] leading-none font-extralight tracking-tight text-[#F5F5F5] tabular-nums md:text-[3.75rem]"
             style={{
               textShadow: "0 0 48px rgba(255,255,255,0.06)",
             }}
@@ -153,7 +167,7 @@ export function GitHubPanel({ stats }: GitHubPanelProps) {
             <span className="block font-mono text-[9px] tracking-[0.2em] text-[#A7A7A7] uppercase">
               Contributions
             </span>
-            <span className="block font-mono text-[8px] text-[#5F5F5F] mt-1">
+            <span className="mt-1 block font-mono text-[8px] text-[#5F5F5F]">
               last 12 months
             </span>
           </div>
@@ -165,8 +179,12 @@ export function GitHubPanel({ stats }: GitHubPanelProps) {
       )}
 
       {/* metric grid */}
-      <div className="grid grid-cols-3 gap-2 mb-2">
-        <MetricCell label="REPOSITORIES" value={stats.publicRepos} delay={0.35} />
+      <div className="mb-2 grid grid-cols-3 gap-2">
+        <MetricCell
+          label="REPOSITORIES"
+          value={stats.publicRepos}
+          delay={0.35}
+        />
         <MetricCell label="TOTAL_STARS" value={stats.totalStars} delay={0.42} />
         <MetricCell label="FOLLOWERS" value={stats.followers} delay={0.49} />
       </div>
@@ -184,23 +202,19 @@ export function GitHubPanel({ stats }: GitHubPanelProps) {
           sub="days"
           delay={0.63}
         />
-        <MetricCell
-          label="FOLLOWING"
-          value={stats.following}
-          delay={0.7}
-        />
+        <MetricCell label="FOLLOWING" value={stats.following} delay={0.7} />
       </div>
 
       {syncedLabel && (
-        <p className="relative mt-5 pt-4 border-t border-white/5 font-mono text-[8px] tracking-wider text-[#5F5F5F] uppercase">
+        <p className="relative mt-5 border-t border-white/5 pt-4 font-mono text-[8px] tracking-wider text-[#5F5F5F] uppercase">
           Last synced · {syncedLabel}
         </p>
       )}
 
       {/* hover micro-detail */}
-      <p className="absolute bottom-3 right-4 font-mono text-[7px] tracking-[0.2em] text-[#5F5F5F] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+      <p className="pointer-events-none absolute right-4 bottom-3 font-mono text-[7px] tracking-[0.2em] text-[#5F5F5F] uppercase opacity-0 transition-opacity duration-700 group-hover:opacity-100">
         Open signal source →
       </p>
     </motion.div>
-  )
+  );
 }

@@ -137,7 +137,7 @@ export default function Projects() {
     <section
       ref={containerRef}
       id="projects"
-      className="relative h-[250vh] border-t border-white/2 bg-[#050505]"
+      className="bg-background relative h-[250vh] border-t border-white/2"
     >
       {/* Sticky Fullscreen viewport */}
       <div className="sticky top-0 flex h-screen w-full flex-col justify-between overflow-hidden py-12 md:py-16">

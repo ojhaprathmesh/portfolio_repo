@@ -30,9 +30,9 @@ export default function CodingProfiles() {
   return (
     <section
       id="coding"
-      className="py-24 md:py-36 bg-[#050505] border-t border-white/2"
+      className="bg-background border-t border-white/2 py-24 md:py-36"
     >
-      <div className="max-w-5xl mx-auto px-6 md:px-12">
+      <div className="mx-auto max-w-5xl px-6 md:px-12">
         <AnimatedSection>
           <SectionHeading
             number="06"
@@ -47,12 +47,12 @@ export default function CodingProfiles() {
           </p>
         )}
 
-        <div className="mt-14 md:mt-20 space-y-8 md:space-y-10">
+        <div className="mt-14 space-y-8 md:mt-20 md:space-y-10">
           <AnimatedSection delay={0.05}>
             <ConnectStrip />
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <AnimatedSection delay={0.08}>
               <DeveloperProfileBlock />
             </AnimatedSection>
@@ -75,7 +75,7 @@ export default function CodingProfiles() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {!isLoading &&
               data?.github &&
               data.github.topLanguages.length > 0 && (
@@ -105,7 +105,7 @@ export default function CodingProfiles() {
         </div>
 
         {lastSynced && !isLoading && (
-          <p className="mt-10 font-mono text-[9px] tracking-widest uppercase text-[#5F5F5F]">
+          <p className="mt-10 font-mono text-[9px] tracking-widest text-[#5F5F5F] uppercase">
             Section last synced {lastSynced}
           </p>
         )}
