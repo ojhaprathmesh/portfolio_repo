@@ -5,9 +5,20 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "format": "prettier . --write",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "prepare": "husky",
     "start": "next start"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,scss,yml,yaml}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
@@ -71,7 +82,11 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-simple-import-sort": "^13.0.0",
     "eslint-plugin-unused-imports": "^4.4.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.5",
     "postcss": "^8.5.15",
+    "prettier": "^3.8.3",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.3.0",
     "tw-animate-css": "1.3.3",

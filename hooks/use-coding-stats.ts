@@ -1,53 +1,53 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-import type { CodingStatsResponse } from "@/lib/coding/types"
+import type { CodingStatsResponse } from "@/lib/coding/types";
 
 interface UseCodingStatsResult {
-  data: CodingStatsResponse | null
-  isLoading: boolean
-  error: string | null
+  data: CodingStatsResponse | null;
+  isLoading: boolean;
+  error: string | null;
 }
 
 export function useCodingStats(): UseCodingStatsResult {
-  const [data, setData] = useState<CodingStatsResponse | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [data, setData] = useState<CodingStatsResponse | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    let cancelled = false
+    let cancelled = false;
 
     async function load() {
       try {
-        const res = await fetch("/api/coding-stats")
+        const res = await fetch("/api/coding-stats");
         if (!res.ok) {
           if (!cancelled) {
-            setError("Failed to load coding stats")
+            setError("Failed to load coding stats");
           }
-          return
+          return;
         }
-        const json = (await res.json()) as CodingStatsResponse
+        const json = (await res.json()) as CodingStatsResponse;
         if (!cancelled) {
-          setData(json)
+          setData(json);
           if (!json.github && !json.leetcode) {
-            setError("Could not load platform stats")
+            setError("Could not load platform stats");
           }
         }
       } catch (e) {
         if (!cancelled) {
-          setError(e instanceof Error ? e.message : "Unknown error")
+          setError(e instanceof Error ? e.message : "Unknown error");
         }
       } finally {
-        if (!cancelled) setIsLoading(false)
+        if (!cancelled) setIsLoading(false);
       }
     }
 
-    void load()
+    void load();
     return () => {
-      cancelled = true
-    }
-  }, [])
+      cancelled = true;
+    };
+  }, []);
 
-  return { data, isLoading, error }
+  return { data, isLoading, error };
 }
