@@ -1,36 +1,34 @@
 // filepath: components/hero.tsx
-"use client"
+"use client";
 
-import { Text } from "@react-three/drei"
-import { Canvas } from "@react-three/fiber"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowDown, ArrowRight,Download } from "lucide-react"
-import React, { useEffect, useRef, useState } from "react"
+import { Text } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowDown, ArrowRight, Download } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 
-import { GithubIcon } from "@/components/icons/lucide-github"
-import { LinkedinIcon } from "@/components/icons/lucide-linkedin"
-import { TwitterIcon } from "@/components/icons/lucide-twitter"
-import { Sphere } from "@/components/sentient-sphere"
-import { heroSocialLinks,profile } from "@/data"
-import { useIsMobile } from "@/hooks/use-mobile"
+import { GithubIcon } from "@/components/icons/lucide-github";
+import { LinkedinIcon } from "@/components/icons/lucide-linkedin";
+import { TwitterIcon } from "@/components/icons/lucide-twitter";
+import { Sphere } from "@/components/sentient-sphere";
+import { heroSocialLinks, profile } from "@/data";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const EASE = [0.25, 0.46, 0.45, 0.94] as const
+const EASE = [0.25, 0.46, 0.45, 0.94] as const;
 
 const SOCIAL_ICON_MAP: Record<string, React.ComponentType<any>> = {
   github: GithubIcon,
   linkedin: LinkedinIcon,
   twitter: TwitterIcon,
-}
+};
 
 // ─── 3D Scene Wrapper ────────────────────────────────────────────────────────
 interface HeroSceneProps {
-  isMobile: boolean
+  isMobile: boolean;
 }
 
-function HeroScene({
-  isMobile,
-}: HeroSceneProps) {
+function HeroScene({ isMobile }: HeroSceneProps) {
   return (
     <>
       {/* Lights */}
@@ -53,59 +51,59 @@ function HeroScene({
         PRATHMESH
       </Text>
     </>
-  )
+  );
 }
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 export function Hero() {
-  const containerRef = useRef<HTMLElement>(null)
-  const isMobile = useIsMobile()
-  const [isInView, setIsInView] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const containerRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
+  const [isInView, setIsInView] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
-    if (!mounted) return
+    if (!mounted) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsInView(entry.isIntersecting)
+        setIsInView(entry.isIntersecting);
       },
-      { threshold: 0.01 }
-    )
+      { threshold: 0.01 },
+    );
 
     if (containerRef.current) {
-      observer.observe(containerRef.current)
+      observer.observe(containerRef.current);
     }
 
     return () => {
-      observer.disconnect()
-    }
-  }, [mounted])
+      observer.disconnect();
+    };
+  }, [mounted]);
 
-  const THEME_COLOR = "#FFFFFF"
+  const THEME_COLOR = "#FFFFFF";
 
   // Parallax scroll transforms for overlay text
   const { scrollYProgress } = useScroll({
-    target: mounted ? containerRef : undefined,
+    target: containerRef,
     offset: ["start start", "end start"],
-  })
-  const opacity = useTransform(scrollYProgress, [0, 0.55], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.55], [1, 0.92])
-  const y = useTransform(scrollYProgress, [0, 0.55], ["0%", "-8%"])
+  });
+  const opacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.55], [1, 0.92]);
+  const y = useTransform(scrollYProgress, [0, 0.55], ["0%", "-8%"]);
 
   const headlineWords = profile.headline
     .replace(/\.$/, "")
     .split(". ")
-    .filter(Boolean)
+    .filter(Boolean);
 
   const scrollToProjects = () => {
-    const el = document.querySelector("#projects")
-    if (el) el.scrollIntoView({ behavior: "smooth" })
-  }
+    const el = document.querySelector("#projects");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
@@ -116,23 +114,29 @@ export function Hero() {
       aria-label="Hero section"
     >
       {/* ── 3D Cybernetic Canvas Background ── */}
-      <div className="absolute inset-0 w-full h-full z-0 select-none" aria-hidden="true">
+      <div
+        className="absolute inset-0 z-0 h-full w-full select-none"
+        aria-hidden="true"
+      >
         <Canvas
           camera={{ position: [0, 0, 5], fov: 45 }}
           dpr={isMobile ? [1, 1] : [1, 1.5]}
-          gl={{ antialias: true, alpha: true, depth: true, powerPreference: "high-performance" }}
+          gl={{
+            antialias: true,
+            alpha: true,
+            depth: true,
+            powerPreference: "high-performance",
+          }}
           frameloop={isInView ? "always" : "never"}
         >
           <Sphere isMobile={isMobile} />
-          <HeroScene
-            isMobile={isMobile}
-          />
+          <HeroScene isMobile={isMobile} />
         </Canvas>
       </div>
 
       {/* ── Gradient vignette overlay (baked depth contrast) ── */}
       <div
-        className="absolute inset-0 pointer-events-none z-5"
+        className="pointer-events-none absolute inset-0 z-5"
         style={{
           background:
             "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, rgba(5,5,5,0.45) 75%, rgba(5,5,5,0.85) 100%)",
@@ -143,15 +147,15 @@ export function Hero() {
       {/* ── Main text content ── */}
       <motion.div
         style={{ opacity, scale, y }}
-        className="relative z-10 h-full flex flex-col justify-center items-center px-6 md:px-12 pointer-events-none"
+        className="pointer-events-none relative z-10 flex h-full flex-col items-center justify-center px-6 md:px-12"
       >
-        <div className="text-center max-w-5xl w-full">
+        <div className="w-full max-w-5xl text-center">
           {/* Section counter + availability */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
-            className="flex items-center justify-center gap-4 mb-8"
+            className="mb-8 flex items-center justify-center gap-4"
           >
             <span
               className="font-mono text-[10px] tracking-[0.35em] uppercase"
@@ -163,11 +167,11 @@ export function Hero() {
             <span className="relative flex items-center gap-1.5">
               <span className="relative flex h-1.5 w-1.5">
                 <span
-                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-40"
+                  className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-40"
                   style={{ background: THEME_COLOR }}
                 />
                 <span
-                  className="relative inline-flex rounded-full h-1.5 w-1.5 opacity-70"
+                  className="relative inline-flex h-1.5 w-1.5 rounded-full opacity-70"
                   style={{ background: THEME_COLOR }}
                 />
               </span>
@@ -181,7 +185,7 @@ export function Hero() {
           </motion.div>
 
           {/* Main Headline */}
-          <h1 className="font-sans font-light tracking-tight leading-[0.9] mb-6 select-none">
+          <h1 className="mb-6 font-sans leading-[0.9] font-light tracking-tight select-none">
             {headlineWords.map((word, index) => (
               <motion.span
                 key={index}
@@ -193,12 +197,15 @@ export function Hero() {
                   ease: EASE,
                 }}
                 className="inline-block"
-                style={{ marginRight: index < headlineWords.length - 1 ? "0.25em" : 0 }}
+                style={{
+                  marginRight: index < headlineWords.length - 1 ? "0.25em" : 0,
+                }}
               >
                 <span
                   className={`text-[clamp(3rem,8vw,7rem)] ${index % 2 === 1 ? "italic" : ""}`}
                   style={{
-                    color: index % 2 === 1 ? "rgba(245,245,245,0.72)" : "#F5F5F5",
+                    color:
+                      index % 2 === 1 ? "rgba(245,245,245,0.72)" : "#F5F5F5",
                   }}
                 >
                   {word}
@@ -213,7 +220,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.82, ease: EASE }}
-            className="font-mono text-sm md:text-base max-w-xl mx-auto mb-12 tracking-wide select-none"
+            className="mx-auto mb-12 max-w-xl font-mono text-sm tracking-wide select-none md:text-base"
             style={{ color: "#A7A7A7" }}
           >
             {profile.subline}
@@ -224,14 +231,14 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.0, ease: EASE }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 pointer-events-auto"
+            className="pointer-events-auto mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             {/* Primary CTA — View Projects */}
             <motion.button
               onClick={scrollToProjects}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="group relative flex items-center gap-2.5 px-7 py-3.5 font-mono text-xs tracking-[0.2em] uppercase overflow-hidden cursor-pointer"
+              className="group relative flex cursor-pointer items-center gap-2.5 overflow-hidden px-7 py-3.5 font-mono text-xs tracking-[0.2em] uppercase"
               style={{
                 background: "#F5F5F5",
                 color: "#050505",
@@ -259,19 +266,19 @@ export function Hero() {
               download="Prathmesh_Ojha_Resume.pdf"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="group relative flex items-center gap-2.5 px-7 py-3.5 font-mono text-xs tracking-[0.2em] uppercase transition-colors duration-300 cursor-pointer"
+              className="group relative flex cursor-pointer items-center gap-2.5 px-7 py-3.5 font-mono text-xs tracking-[0.2em] uppercase transition-colors duration-300"
               style={{
                 border: "1px solid rgba(255,255,255,0.16)",
                 color: "#A7A7A7",
                 borderRadius: "2px",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)"
-                e.currentTarget.style.color = "#F5F5F5"
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)";
+                e.currentTarget.style.color = "#F5F5F5";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.16)"
-                e.currentTarget.style.color = "#A7A7A7"
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.16)";
+                e.currentTarget.style.color = "#A7A7A7";
               }}
               aria-label="Download Resume PDF"
             >
@@ -288,10 +295,10 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2, ease: EASE }}
-            className="flex items-center justify-center gap-6 pointer-events-auto"
+            className="pointer-events-auto flex items-center justify-center gap-6"
           >
             {heroSocialLinks.map((link, index) => {
-              const Icon = SOCIAL_ICON_MAP[link.icon ?? ""] ?? ArrowRight
+              const Icon = SOCIAL_ICON_MAP[link.icon ?? ""] ?? ArrowRight;
               return (
                 <motion.a
                   key={link.label}
@@ -305,10 +312,10 @@ export function Hero() {
                   className="group flex items-center gap-1.5 transition-colors duration-300"
                   style={{ color: "#5F5F5F" }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#F5F5F5"
+                    e.currentTarget.style.color = "#F5F5F5";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "#5F5F5F"
+                    e.currentTarget.style.color = "#5F5F5F";
                   }}
                   aria-label={`Visit ${link.label} profile`}
                 >
@@ -317,7 +324,7 @@ export function Hero() {
                     {link.label}
                   </span>
                 </motion.a>
-              )
+              );
             })}
           </motion.div>
         </div>
@@ -328,7 +335,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 select-none"
+        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 select-none"
         aria-hidden="true"
       >
         <motion.span
@@ -352,7 +359,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
-        className="absolute bottom-8 left-8 z-10 font-mono text-[9px] tracking-[0.3em] uppercase hidden md:block select-none"
+        className="absolute bottom-8 left-8 z-10 hidden font-mono text-[9px] tracking-[0.3em] uppercase select-none md:block"
         style={{ color: "#333333" }}
         aria-hidden="true"
       >
@@ -363,14 +370,12 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
-        className="absolute bottom-8 right-8 z-10 font-mono text-[9px] tracking-[0.3em] uppercase hidden md:block select-none"
+        className="absolute right-8 bottom-8 z-10 hidden font-mono text-[9px] tracking-[0.3em] uppercase select-none md:block"
         style={{ color: "#333333" }}
         aria-hidden="true"
       >
         prathmesh ojha
       </motion.div>
-
-
     </section>
-  )
+  );
 }

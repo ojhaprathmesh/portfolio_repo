@@ -1,23 +1,38 @@
-import { useFrame, useThree } from "@react-three/fiber"
-import { useEffect, useMemo, useRef, useState } from "react"
-import type { Mesh, ShaderMaterial } from "three"
-import { FrontSide,MathUtils } from "three"
+import { useFrame, useThree } from "@react-three/fiber";
+import { useEffect, useMemo, useRef } from "react";
+import type { Mesh, ShaderMaterial } from "three";
+import { FrontSide, MathUtils } from "three";
 
-import { useIsMobile } from "@/hooks/use-mobile"
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface SphereProps {
-  isMobile: boolean
+  isMobile: boolean;
 }
 
 export function Sphere({ isMobile }: SphereProps) {
-  const meshRef = useRef<Mesh>(null)
-  const materialRef = useRef<ShaderMaterial>(null)
-  const { pointer } = useThree()
-  
+  const meshRef = useRef<Mesh>(null);
+  const materialRef = useRef<ShaderMaterial>(null);
+  const { gl } = useThree();
+
+  // Window-level mouse tracking (normalized to [-1, 1]) — bypasses R3F's canvas-local
+  // event system so the sphere responds to cursor movement even during loading transitions
+  const mouseRef = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const canvas = gl.domElement;
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseRef.current.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      mouseRef.current.y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+    };
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [gl]);
+
   // Throttle Render logic: Capped at 90 FPS to preserve CPU/GPU cycles
-  const lastRenderTime = useRef(0)
-  const fps = 90
-  const interval = 1 / fps
+  const lastRenderTime = useRef(0);
+  const fps = 90;
+  const interval = 1 / fps;
 
   const uniforms = useMemo(
     () => ({
@@ -25,7 +40,7 @@ export function Sphere({ isMobile }: SphereProps) {
       uMouse: { value: [0, 0] },
     }),
     [],
-  )
+  );
 
   const vertexShader = `
     uniform float uTime;
@@ -93,7 +108,7 @@ export function Sphere({ isMobile }: SphereProps) {
       vec3 newPosition = position + normal * displacement;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
     }
-  `
+  `;
 
   const fragmentShader = `
     varying vec2 vUv;
@@ -108,44 +123,58 @@ export function Sphere({ isMobile }: SphereProps) {
       
       gl_FragColor = vec4(color * (1.0 - line * 0.5), 0.6);
     }
-  `
+  `;
 
   useFrame((state) => {
-    const time = state.clock.getElapsedTime()
-    
-    let shouldSkip = false
-    let elapsed = 0
+    const time = state.clock.getElapsedTime();
+
+    let shouldSkip = false;
+    let elapsed = 0;
     if (lastRenderTime.current !== 0) {
-      elapsed = time - lastRenderTime.current
+      elapsed = time - lastRenderTime.current;
       // Only skip if elapsed is positive, under 1.0s (to catch frame resumptions), and under the FPS interval
       if (elapsed >= 0 && elapsed < 1.0 && elapsed < interval) {
-        shouldSkip = true
+        shouldSkip = true;
       }
     }
 
     if (shouldSkip) {
-      return
+      return;
     }
 
     // Set elapsedSinceLastRender to either the calculated elapsed time or the default frame interval
-    const elapsedSinceLastRender = lastRenderTime.current === 0 || elapsed < 0 || elapsed > 1.0 ? interval : elapsed
+    const elapsedSinceLastRender =
+      lastRenderTime.current === 0 || elapsed < 0 || elapsed > 1.0
+        ? interval
+        : elapsed;
 
     if (materialRef.current) {
-      materialRef.current.uniforms.uTime.value = time
-      materialRef.current.uniforms.uMouse.value = [pointer.x, pointer.y]
+      materialRef.current.uniforms.uTime.value = time;
+      materialRef.current.uniforms.uMouse.value = [
+        mouseRef.current.x,
+        mouseRef.current.y,
+      ];
     }
 
     if (meshRef.current) {
-      meshRef.current.rotation.y = time * 0.05
-      const lerpSpeed = 1 - Math.exp(-5 * elapsedSinceLastRender) // Frame-rate independent based on actual elapsed time
-      meshRef.current.rotation.x = MathUtils.lerp(meshRef.current.rotation.x, pointer.y * 0.2, lerpSpeed)
-      meshRef.current.rotation.z = MathUtils.lerp(meshRef.current.rotation.z, pointer.x * 0.2, lerpSpeed)
+      meshRef.current.rotation.y = time * 0.05;
+      const lerpSpeed = 1 - Math.exp(-5 * elapsedSinceLastRender); // Frame-rate independent based on actual elapsed time
+      meshRef.current.rotation.x = MathUtils.lerp(
+        meshRef.current.rotation.x,
+        mouseRef.current.y * 0.2,
+        lerpSpeed,
+      );
+      meshRef.current.rotation.z = MathUtils.lerp(
+        meshRef.current.rotation.z,
+        mouseRef.current.x * 0.2,
+        lerpSpeed,
+      );
     }
 
     // Explicit render call due to custom frame control (renderPriority = 1)
-    state.gl.render(state.scene, state.camera)
-    lastRenderTime.current = time
-  }, 1)
+    state.gl.render(state.scene, state.camera);
+    lastRenderTime.current = time;
+  }, 1);
 
   return (
     <mesh ref={meshRef}>
@@ -160,5 +189,5 @@ export function Sphere({ isMobile }: SphereProps) {
         side={FrontSide}
       />
     </mesh>
-  )
+  );
 }

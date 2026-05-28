@@ -6,51 +6,53 @@
 /* Dark portfolio theme - using dark mode as default */
 :root {
   --background: #050505;
-  --foreground: #F5F5F5;
-  --card: #0B0B0B;
-  --card-foreground: #F5F5F5;
-  --popover: #0B0B0B;
-  --popover-foreground: #F5F5F5;
-  --primary: #FFFFFF;
+  --foreground: #f5f5f5;
+  --card: #0b0b0b;
+  --card-foreground: #f5f5f5;
+  --popover: #0b0b0b;
+  --popover-foreground: #f5f5f5;
+  --primary: #ffffff;
   --primary-foreground: #050505;
-  --secondary: #1A1A1A;
-  --secondary-foreground: #F5F5F5;
-  --muted: #1A1A1A;
-  --muted-foreground: #A7A7A7;
-  --accent: #FFFFFF;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #f5f5f5;
+  --muted: #1a1a1a;
+  --muted-foreground: #a7a7a7;
+  --accent: #ffffff;
   --accent-foreground: #050505;
-  --destructive: #5F5F5F;
-  --destructive-foreground: #F5F5F5;
+  --destructive: #5f5f5f;
+  --destructive-foreground: #f5f5f5;
   --border: #333333;
-  --input: #1A1A1A;
-  --ring: #A7A7A7;
+  --input: #1a1a1a;
+  --ring: #a7a7a7;
   --radius: 0.25rem;
-  --chart-1: #FFFFFF;
-  --chart-2: #A7A7A7;
-  --chart-3: #5F5F5F;
-  --chart-4: #A7A7A7;
-  --chart-5: #1A1A1A;
-  --sidebar: #0B0B0B;
-  --sidebar-foreground: #F5F5F5;
-  --sidebar-primary: #FFFFFF;
+  --chart-1: #ffffff;
+  --chart-2: #a7a7a7;
+  --chart-3: #5f5f5f;
+  --chart-4: #a7a7a7;
+  --chart-5: #1a1a1a;
+  --sidebar: #0b0b0b;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #ffffff;
   --sidebar-primary-foreground: #050505;
-  --sidebar-accent: #1A1A1A;
-  --sidebar-accent-foreground: #F5F5F5;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #f5f5f5;
   --sidebar-border: #333333;
-  --sidebar-ring: #A7A7A7;
+  --sidebar-ring: #a7a7a7;
 
   /* Approved custom scheme variables */
   --elevated: #111111;
-  --dim: #5F5F5F;
+  --dim: #5f5f5f;
   --grid-line: #242424;
-  --glow: #EDEDED;
-  --cyan-glitch: #FFFFFF;
-  --blue-glitch: #A7A7A7;
-  --red-glitch: #5F5F5F;
+  --glow: #ededed;
+  --cyan-glitch: #ffffff;
+  --blue-glitch: #a7a7a7;
+  --red-glitch: #5f5f5f;
 }
 
 @theme inline {
-  --font-sans: "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans:
+    "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   --font-mono: "Geist Mono", "SF Mono", "Fira Code", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -174,6 +176,7 @@
 
 /* Smooth font rendering */
 html {
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -181,6 +184,6 @@ html {
 
 /* Focus visible styles */
 :focus-visible {
-  outline: 2px solid #FFFFFF;
+  outline: 2px solid #ffffff;
   outline-offset: 2px;
 }
