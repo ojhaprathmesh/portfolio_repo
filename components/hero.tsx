@@ -341,12 +341,14 @@ export function Hero() {
         <motion.span
           className="font-mono text-[9px] tracking-[0.38em] uppercase"
           style={{ color: "#5F5F5F" }}
+          initial={{ opacity: 0.5 }}
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           Scroll
         </motion.span>
         <motion.div
+          initial={{ y: 0 }}
           animate={{ y: [0, 7, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
         >

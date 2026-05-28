@@ -53,9 +53,10 @@
 
 @theme inline {
   --font-sans:
-    "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  --font-mono: "Geist Mono", "SF Mono", "Fira Code", monospace;
+    var(--font-geist-sans), "Geist", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono:
+    var(--font-geist-mono), "Geist Mono", "SF Mono", "Fira Code", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -110,7 +111,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground relative;
   }
 }
 
@@ -180,6 +181,7 @@
 
 /* Smooth font rendering */
 html {
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;

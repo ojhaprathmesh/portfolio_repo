@@ -662,6 +662,7 @@ export function LoadingScreen({
             {/* Blueprint Grid Background */}
             <motion.div
               className="pointer-events-none absolute inset-0"
+              initial={{ opacity: 1 }}
               animate={{ opacity: phase === "rippling" ? 0 : 1 }}
               transition={{ duration: 0.5 }}
             >
