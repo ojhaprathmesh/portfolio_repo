@@ -2,9 +2,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowUpRight,ExternalLink, Github } from "lucide-react"
+import { ArrowUpRight,ExternalLink } from "lucide-react"
 import Image from "next/image"
 
+import { GithubIcon } from "@/components/icons/lucide-github"
 import type { Project } from "@/types"
 
 interface ProjectCardProps {
@@ -103,7 +104,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase text-white/50 hover:text-white transition-colors"
               >
-                <Github size={12} strokeWidth={1.5} />
+                <GithubIcon size={12} strokeWidth={1.5} />
                 <span>Source</span>
               </a>
             )}

@@ -1,8 +1,7 @@
 // filepath: components/cards/AchievementItem.tsx
 "use client"
 
-import { motion } from "framer-motion"
-import { Award, ExternalLink,Star, Target, Trophy } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 
 import type { Achievement } from "@/types"
 
@@ -11,16 +10,7 @@ interface AchievementItemProps {
   index: number
 }
 
-const ICON_MAP = {
-  hackathon: Trophy,
-  academic: Award,
-  certification: Target,
-  recognition: Star,
-  "open-source": Target,
-}
-
 export function AchievementItem({ achievement, index }: AchievementItemProps) {
-  const IconComponent = ICON_MAP[achievement.type] || Award
   const itemIndex = (index + 1).toString().padStart(2, "0")
 
   return (

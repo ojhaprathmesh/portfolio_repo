@@ -6,7 +6,7 @@ export const siteMetadata: SiteMetadata = {
   description:
     "B.Tech CSE (Data Science & AI) student at BML Munjal University building full-stack web apps, Flutter & Android mobile products, and AI-powered financial analytics. Open to internships and collaboration.",
   siteUrl: "https://ojhaprathmesh.in",
-  ogImage: "/og-image.jpg",
+  ogImage: "/og-image.png",
   keywords: [
     "Prathmesh Ojha",
     "Full-Stack Developer",

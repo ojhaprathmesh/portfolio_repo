@@ -2,10 +2,10 @@
 // ─── Data Layer — Central Export ─────────────────────────────────────────────
 
 // Profile & Identity
-export { personalInfo,profile } from "./profile"
+export { profile } from "./profile"
 
 // Navigation
-export { navItems, navLinks } from "./navigation"
+export { navItems } from "./navigation"
 
 // Social Links
 export { contactLinks,heroSocialLinks, socialLinks } from "./socials"

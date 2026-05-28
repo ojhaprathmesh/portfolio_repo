@@ -4,10 +4,12 @@
 import { Text } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { motion, useScroll, useTransform } from "framer-motion"
-import type { LucideIcon } from "lucide-react"
-import { ArrowDown, ArrowRight,Download, Github, Linkedin, Twitter } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { ArrowDown, ArrowRight,Download } from "lucide-react"
+import React, { useEffect, useRef, useState } from "react"
 
+import { GithubIcon } from "@/components/icons/lucide-github"
+import { LinkedinIcon } from "@/components/icons/lucide-linkedin"
+import { TwitterIcon } from "@/components/icons/lucide-twitter"
 import { Sphere } from "@/components/sentient-sphere"
 import { heroSocialLinks,profile } from "@/data"
 import { useIsMobile } from "@/hooks/use-mobile"
@@ -15,10 +17,10 @@ import { useIsMobile } from "@/hooks/use-mobile"
 // ─── Constants ────────────────────────────────────────────────────────────────
 const EASE = [0.25, 0.46, 0.45, 0.94] as const
 
-const SOCIAL_ICON_MAP: Record<string, LucideIcon> = {
-  github: Github,
-  linkedin: Linkedin,
-  twitter: Twitter,
+const SOCIAL_ICON_MAP: Record<string, React.ComponentType<any>> = {
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
+  twitter: TwitterIcon,
 }
 
 // ─── 3D Scene Wrapper ────────────────────────────────────────────────────────

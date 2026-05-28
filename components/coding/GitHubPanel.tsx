@@ -1,10 +1,11 @@
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
-import { ExternalLink, Github } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 import { useMemo } from "react"
 
 import { EmbeddedContributionHeatmap } from "@/components/coding/github-panel/EmbeddedContributionHeatmap"
+import { GithubIcon } from "@/components/icons/lucide-github"
 import { useCountUp } from "@/hooks/use-count-up"
 import type { GitHubLiveStats } from "@/lib/coding/types"
 
@@ -99,7 +100,7 @@ export function GitHubPanel({ stats }: GitHubPanelProps) {
       <div className="relative flex items-start justify-between gap-4 mb-5">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Github size={13} className="text-[#A7A7A7] group-hover:text-[#F5F5F5] transition-colors duration-500" />
+            <GithubIcon size={13} className="text-[#A7A7A7] group-hover:text-[#F5F5F5] transition-colors duration-500" />
             <span className="font-mono text-[9px] tracking-[0.28em] text-[#A7A7A7] uppercase">
               GitHub
             </span>

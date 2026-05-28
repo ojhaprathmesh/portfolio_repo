@@ -15,7 +15,7 @@ type WaterRipplePlaneProps = {
   duration?: number;
   center?: [number, number];
   intensity?: number;
-  onComplete?: () => void;
+  onCompleteAction?: () => void;
 };
 
 export function WaterRipplePlane({
@@ -23,7 +23,7 @@ export function WaterRipplePlane({
   duration = 2.2,
   center = [0.5, 0.5],
   intensity = 1.35,
-  onComplete,
+  onCompleteAction,
 }: WaterRipplePlaneProps) {
   const materialRef = useRef<THREE.ShaderMaterial | null>(null);
   const startTimeRef = useRef<number | null>(null);
@@ -66,7 +66,7 @@ export function WaterRipplePlane({
 
     if (progress >= 1 && !completedRef.current) {
       completedRef.current = true;
-      onComplete?.();
+      onCompleteAction?.();
     }
   });
 

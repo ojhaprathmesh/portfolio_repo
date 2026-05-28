@@ -21,7 +21,7 @@ export default function Experience() {
         <div className="mt-14 md:mt-20">
           {experience.map((item, idx) => (
             <AnimatedSection key={item.id} delay={idx * 0.1}>
-              <TimelineItem item={item} index={idx} />
+              <TimelineItem item={item} />
             </AnimatedSection>
           ))}
         </div>

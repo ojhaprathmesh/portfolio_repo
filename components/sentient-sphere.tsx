@@ -1,6 +1,4 @@
-"use client"
-
-import { Canvas, useFrame, useThree } from "@react-three/fiber"
+import { useFrame, useThree } from "@react-three/fiber"
 import { useEffect, useMemo, useRef, useState } from "react"
 import type { Mesh, ShaderMaterial } from "three"
 import { FrontSide,MathUtils } from "three"
@@ -162,62 +160,5 @@ export function Sphere({ isMobile }: SphereProps) {
         side={FrontSide}
       />
     </mesh>
-  )
-}
-
-export function SentientSphere() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
-  const [mounted, setMounted] = useState(false)
-  const isMobile = useIsMobile()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (!mounted) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting)
-      },
-      { threshold: 0.01 }
-    )
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-    }
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [mounted])
-
-  if (!mounted) {
-    return (
-      <div className="w-full h-full flex items-center justify-center">
-        <div className="w-64 h-64 rounded-full border border-white/10 animate-pulse" />
-      </div>
-    )
-  }
-
-  return (
-    <div ref={containerRef} className="w-full h-full">
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        className="w-full my-0 h-full py-0"
-        dpr={isMobile ? [1, 1] : [1, 1.5]}
-        frameloop={isInView ? "always" : "never"}
-        gl={{
-          antialias: true,
-          alpha: true,
-          powerPreference: "high-performance",
-        }}
-      >
-        <ambientLight intensity={0.5} />
-        <Sphere isMobile={isMobile} />
-      </Canvas>
-    </div>
   )
 }

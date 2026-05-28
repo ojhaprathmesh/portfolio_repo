@@ -1,8 +1,6 @@
 // filepath: components/cards/SkillGroup.tsx
 "use client"
 
-import { motion } from "framer-motion"
-
 import type { SkillGroup as SkillGroupType } from "@/types"
 
 interface SkillGroupProps {

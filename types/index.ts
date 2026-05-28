@@ -47,22 +47,6 @@ export interface SocialLink {
   icon?: string
 }
 
-export interface CodingProfileStat {
-  label: string
-  value: string
-}
-
-export interface CodingProfile {
-  platform: string
-  username: string
-  url: string
-  stat?: string
-  statLabel?: string
-  badge?: string
-  color?: string
-  secondaryStats?: CodingProfileStat[]
-  isLive?: boolean
-}
 
 // ─── Projects ─────────────────────────────────────────────────────────────────
 
@@ -150,10 +134,4 @@ export interface SiteMetadata {
   twitterHandle?: string
 }
 
-// ─── Legacy compat (used by existing components) ──────────────────────────────
 
-/** @deprecated Use ProfileInfo instead */
-export type PersonalInfo = Pick<
-  ProfileInfo,
-  "name" | "title" | "headline" | "tagline" | "email" | "location" | "timezone" | "bio" | "availability"
->

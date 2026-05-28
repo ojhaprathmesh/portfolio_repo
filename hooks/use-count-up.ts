@@ -10,7 +10,7 @@ export function useCountUp(
   const [value, setValue] = useState(0)
 
   useEffect(() => {
-    if (!enabled || target == null || target === undefined) {
+    if (!enabled || target == null) {
       setValue(0)
       return
     }
@@ -29,6 +29,6 @@ export function useCountUp(
     return () => cancelAnimationFrame(frame)
   }, [target, durationMs, enabled])
 
-  if (target == null || target === undefined) return null
+  if (target == null) return null
   return value
 }

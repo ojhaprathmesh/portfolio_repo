@@ -12,9 +12,3 @@ export const navItems: NavItem[] = [
   { label: "Contact",   href: "#contact",         index: "08" },
 ]
 
-// ─── Backward compat ──────────────────────────────────────────────────────────
-/** @deprecated Use navItems from data/navigation instead */
-export const navLinks = navItems.map((item) => ({
-  label: item.label,
-  href: item.href,
-}))

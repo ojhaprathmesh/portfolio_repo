@@ -1,17 +1,15 @@
 // filepath: components/cards/TimelineItem.tsx
 "use client"
 
-import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
 
 import type { ExperienceItem } from "@/types"
 
 interface TimelineItemProps {
   item: ExperienceItem
-  index: number
 }
 
-export function TimelineItem({ item, index }: TimelineItemProps) {
+export function TimelineItem({ item }: TimelineItemProps) {
   return (
     <div className="relative pl-8 md:pl-12 pb-12 last:pb-0 border-l border-white/6">
       {/* Glow node anchor */}

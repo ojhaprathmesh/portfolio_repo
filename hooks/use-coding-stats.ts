@@ -21,7 +21,12 @@ export function useCodingStats(): UseCodingStatsResult {
     async function load() {
       try {
         const res = await fetch("/api/coding-stats")
-        if (!res.ok) throw new Error("Failed to load coding stats")
+        if (!res.ok) {
+          if (!cancelled) {
+            setError("Failed to load coding stats")
+          }
+          return
+        }
         const json = (await res.json()) as CodingStatsResponse
         if (!cancelled) {
           setData(json)
@@ -38,7 +43,7 @@ export function useCodingStats(): UseCodingStatsResult {
       }
     }
 
-    load()
+    void load()
     return () => {
       cancelled = true
     }

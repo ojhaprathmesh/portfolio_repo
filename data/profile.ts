@@ -33,16 +33,3 @@ export const profile: ProfileInfo = {
   resumePath: "/docs/Main_Resume.pdf",
 }
 
-// ─── Backward compat re-export ────────────────────────────────────────────────
-/** @deprecated Import `profile` from data/profile instead */
-export const personalInfo = {
-  name: profile.name,
-  title: profile.title,
-  headline: profile.headline,
-  tagline: profile.tagline,
-  email: profile.email,
-  location: profile.location,
-  timezone: profile.timezone,
-  bio: profile.bio,
-  availability: profile.availability,
-}

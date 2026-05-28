@@ -435,7 +435,7 @@ export function LoadingScreen({ onStartTransition, onComplete }: LoadingScreenPr
                 active={true}
                 duration={4.0}
                 intensity={0.9}
-                onComplete={handleRippleComplete}
+                onCompleteAction={handleRippleComplete}
               />
             </Canvas>
           </motion.div>

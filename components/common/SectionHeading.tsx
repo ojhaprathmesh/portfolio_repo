@@ -1,8 +1,6 @@
 // filepath: components/common/SectionHeading.tsx
 "use client"
 
-import { motion } from "framer-motion"
-
 interface SectionHeadingProps {
   number: string
   title: string
