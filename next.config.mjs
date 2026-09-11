@@ -4,9 +4,9 @@ const cspHeader = `
   script-src 'self' 'unsafe-eval' 'unsafe-inline' blob: https://va.vercel-scripts.com;
   worker-src 'self' blob:;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  img-src 'self' blob: data: https://cdn.jsdelivr.net https://cdn.simpleicons.org https://skillicons.dev https://avatars.githubusercontent.com;
+  img-src 'self' blob: data: https://cdn.jsdelivr.net https://cdn.simpleicons.org https://skillicons.dev https://avatars.githubusercontent.com https://res.cloudinary.com;
   font-src 'self' https://fonts.gstatic.com;
-  connect-src 'self' https://api.github.com https://leetcode.com https://vitals.vercel-insights.com https://cdn.jsdelivr.net;
+  connect-src 'self' https://api.github.com https://leetcode.com https://vitals.vercel-insights.com https://cdn.jsdelivr.net https://res.cloudinary.com;
   frame-ancestors 'none';
   object-src 'none';
   base-uri 'self';
@@ -19,6 +19,7 @@ const nextConfig = {
       { protocol: "https", hostname: "cdn.jsdelivr.net" },
       { protocol: "https", hostname: "cdn.simpleicons.org" },
       { protocol: "https", hostname: "skillicons.dev" },
+      { protocol: "https", hostname: "res.cloudinary.com" },
     ],
   },
   async headers() {

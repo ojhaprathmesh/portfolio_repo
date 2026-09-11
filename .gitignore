@@ -16,6 +16,7 @@
 # temp
 /temp/
 /docs/
+.DS_Store
 
 # debug
 npm-debug.log*
