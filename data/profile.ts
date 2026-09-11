@@ -1,5 +1,5 @@
 // filepath: data/profile.ts
-import type { ProfileInfo } from "@/types"
+import type { ProfileInfo } from "@/types";
 
 export const profile: ProfileInfo = {
   name: "Prathmesh Ojha",
@@ -7,7 +7,8 @@ export const profile: ProfileInfo = {
   title: "B.Tech CSE — Data Science & AI",
   headline: "Build. Ship. Improve. Repeat.",
   subline: "Prathmesh Ojha · Full-Stack · AI/ML · Mobile · Finance",
-  tagline: "Engineering products at the intersection of code, data, and design.",
+  tagline:
+    "Engineering products at the intersection of code, data, and design.",
   email: "prathmesh.ojha.23cse@bmu.edu.in",
   location: "Gurugram, Haryana, India",
   timezone: "IST (UTC+5:30)",
@@ -24,12 +25,12 @@ export const profile: ProfileInfo = {
     degree: "B.Tech — Computer Science & Engineering (Data Science & AI)",
     period: "Aug 2023 – 2027",
     gpa: "CGPA 7.58",
-    focus: "Data Science, Artificial Intelligence, Full-Stack & Mobile Development",
+    focus:
+      "Data Science, Artificial Intelligence, Full-Stack & Mobile Development",
     details:
       "Core areas: Machine Learning, Deep Learning, Data Structures & Algorithms, RESTful APIs, Clean Architecture, and quantitative finance analytics.",
   },
   availability: "OPEN TO OPPORTUNITIES",
   availabilityStatus: "available",
-  resumePath: "/docs/Main_Resume.pdf",
-}
-
+  resumePath: "/resume?download=1",
+};
